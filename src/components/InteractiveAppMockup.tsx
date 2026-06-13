@@ -6,30 +6,26 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
-  Shirt, 
-  Footprints, 
-  Layers, 
-  Moon, 
   Sun, 
-  Heart, 
-  Sparkles, 
+  Moon, 
   Wind, 
   Baby, 
   Compass, 
   Gamepad2, 
-  Check, 
-  Smartphone,
-  ShieldCheck,
   ChevronRight,
-  Info
+  Menu,
+  Bell,
+  Heart,
+  Sparkles,
+  Check
 } from 'lucide-react';
 import { WeatherCondition, BabyActivity, DayMoment } from '../types';
 import { getClimaRecommendation } from '../lib/climaEngine';
 
 export default function InteractiveAppMockup() {
-  const [temp, setTemp] = useState<number>(20);
-  const [moment, setMoment] = useState<DayMoment>('noite');
-  const [activity, setActivity] = useState<BabyActivity>('dormindo');
+  const [temp, setTemp] = useState<number>(22);
+  const [moment, setMoment] = useState<DayMoment>('dia');
+  const [activity, setActivity] = useState<BabyActivity>('brincando');
   const [hasAC, setHasAC] = useState<boolean>(false);
 
   // Compute recommendation
@@ -42,110 +38,101 @@ export default function InteractiveAppMockup() {
 
   const rec = useMemo(() => getClimaRecommendation(condition), [condition]);
 
-  // Color mapping based on comfort status
-  const comfortColorMap = {
-    frio_intenso: { bg: 'bg-[#E1EAF4]', text: 'text-[#4A729D]', border: 'border-[#CADAEB]', name: 'Frio Intenso ❄️' },
-    frio: { bg: 'bg-[#EAF1F8]', text: 'text-[#5B88B5]', border: 'border-[#D4E3F1]', name: 'Frio ☁️' },
-    fresco: { bg: 'bg-[#F2F6ED]', text: 'text-[#6D8158]', border: 'border-[#DFE7D8]', name: 'Fresco 🍃' },
-    agradavel: { bg: 'bg-[#FDFBF7]', text: 'text-[#8E8276]', border: 'border-[#F2EEE7]', name: 'Agradável ✨' },
-    quente: { bg: 'bg-[#FAF0EC]', text: 'text-[#C97D65]', border: 'border-[#F4DFD8]', name: 'Quente ☀️' },
-    muito_quente: { bg: 'bg-[#F7EBE6]', text: 'text-[#BD5B3E]', border: 'border-[#ECD5CD]', name: 'Muito Quente 🔥' }
-  };
+  // Map temperature to human terms matching screenshots
+  const climateTerm = useMemo(() => {
+    if (temp < 16) return { name: 'Frio Intenso', emoji: '🥶', desc: 'Clima exige atenção redobrada com as extremidades do bebê.' };
+    if (temp >= 16 && temp < 19) return { name: 'Clima Frio', emoji: '☁️', desc: 'Ideal reforçar com calça justa e casaquinho confortável.' };
+    if (temp >= 19 && temp < 22) return { name: 'Clima Fresquinho', emoji: '🍃', desc: 'Temperatura agradável com leve brisa fria.' };
+    if (temp >= 22 && temp < 25) return { name: 'Clima Agradável', emoji: '😊', desc: 'O clima está ótimo, muito gostoso e equilibrado.' };
+    if (temp >= 25 && temp < 28) return { name: 'Clima Quente', emoji: '☀️', desc: 'Clima bem quente, prefira algodão ultra leve e fino.' };
+    return { name: 'Calor Intenso', emoji: '🔥', desc: 'Evite excesso de tecidos para prevenir brotoejas e desconforto.' };
+  }, [temp]);
 
-  const statusStyle = comfortColorMap[rec.comfortStatus];
-
-  // Helper to dynamically render Lucide icons by name
-  const renderItemIcon = (iconName: string) => {
-    const props = { className: "w-5 h-5 text-[#5F5A55]/80" };
-    switch (iconName) {
-      case 'Shirt': return <Shirt {...props} />;
-      case 'Footprints': return <Footprints {...props} />;
-      case 'Layers': return <Layers {...props} />;
-      case 'Moon': return <Moon {...props} className="w-5 h-5 text-indigo-400" />;
-      case 'Sun': return <Sun {...props} className="w-5 h-5 text-amber-400" />;
-      case 'Heart': return <Heart {...props} className="w-5 h-5 text-rose-300 fill-rose-100" />;
-      default: return <Shirt {...props} />;
-    }
-  };
+  // Layers calculation
+  const layerNum = useMemo(() => {
+    if (temp < 16) return '3 Camadas';
+    if (temp >= 16 && temp < 21) return '2 Camadas';
+    return '1 Camada';
+  }, [temp]);
 
   return (
-    <div id="simulator-section" className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-soft-cream/60 p-6 md:p-10 rounded-[32px] border border-[#F2EEE7] relative overflow-hidden shadow-premium">
-      {/* Decorative cloud backgrounds */}
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-soft-cream/60 p-5 md:p-8 rounded-[32px] border border-[#F2EEE7] relative overflow-hidden shadow-premium">
+      
+      {/* Decorative gradients */}
       <div className="absolute top-[-50px] right-[-50px] w-96 h-96 bg-peach-baby/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-[-100px] left-[-100px] w-96 h-96 bg-sage-green/10 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Simulator Inputs Left Side (5 Cols) */}
-      <div className="lg:col-span-5 flex flex-col space-y-6 z-10">
+      {/* LEFT COLUMN: Simulator Controls (5 Cols) */}
+      <div className="lg:col-span-5 flex flex-col space-y-4.5 z-10 text-left">
         <div>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-peach-baby/20 text-[#5F5A55] text-xs font-medium tracking-tight font-display mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-[#C97D65]" />
-            Simulador ClimaBaby
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-peach-baby/20 text-[#5F5A55] text-[10px] font-bold tracking-tight font-display mb-2 border border-peach-baby/30 uppercase">
+            ✨ SIMULADOR CLIMABABY Live
           </span>
-          <h3 className="font-display text-2xl md:text-3xl font-semibold tracking-tight text-brand-text leading-tight">
-            Veja a mágica acontecer em tempo real
+          <h3 className="font-display text-xl md:text-2xl font-bold tracking-tight text-brand-text leading-tight">
+            Experimente o app real
           </h3>
-          <p className="text-[#5F5A55]/80 text-sm mt-2">
-            Altere as condições climáticas e do quarto abaixo para ver as recomendações de roupinha mudarem no smartphone.
+          <p className="text-[#5F5A55]/85 text-xs mt-1">
+            Simule o quarto do seu bebê abaixo para ver o recomendador inteligente atualizar a roupa instantly no celular ao lado.
           </p>
         </div>
 
-        {/* Temp Slider */}
-        <div className="bg-warm-white p-5 rounded-2xl border border-[#F2EEE7] shadow-sm">
-          <div className="flex justify-between items-center mb-3">
-            <span className="text-xs font-medium uppercase tracking-wider text-[#5F5A55]/70 font-display">Temperatura do Ambiente</span>
-            <span className="text-2xl font-bold font-display text-brand-text">{temp}°C</span>
+        {/* Temp Selector Form item */}
+        <div className="bg-warm-white p-4 rounded-xl border border-[#F2EEE7] shadow-sm">
+          <div className="flex justify-between items-center mb-2">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#5F5A55]/70 font-display">Temperatura do Quarto</span>
+            <span className="text-xl font-bold font-display text-brand-text">{temp}°C</span>
           </div>
           <input 
             type="range" 
-            min="10" 
-            max="35" 
+            min="12" 
+            max="32" 
             value={temp} 
             onChange={(e) => setTemp(parseInt(e.target.value))}
-            className="w-full h-1.5 bg-[#F2EEE7] rounded-all appearance-none cursor-pointer accent-[#C97D65] focus:outline-none focus:ring-0 active:accent-[#BFC8B2]"
+            className="w-full h-1 bg-[#F2EEE7] rounded-full appearance-none cursor-pointer accent-[#C97D65]"
           />
-          <div className="flex justify-between text-[10px] text-brand-text-light mt-1.5 font-display font-medium">
-            <span>Frio Extremo (10°C)</span>
+          <div className="flex justify-between text-[9px] text-[#8E857C] font-semibold mt-1 font-display">
+            <span>Frio (12°C)</span>
             <span>Agradável (22°C)</span>
-            <span>Calor (35°C)</span>
+            <span>Quente (32°C)</span>
           </div>
         </div>
 
-        {/* Moment of day Selector */}
-        <div className="grid grid-cols-2 gap-3">
+        {/* Moment of day */}
+        <div className="grid grid-cols-2 gap-2">
           <button 
             onClick={() => setMoment('dia')}
-            className={`flex items-center justify-center gap-2 py-3 px-4 rounded-xl border font-display font-medium text-sm transition-all duration-300 ${
+            className={`flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg border font-display font-semibold text-xs transition-all duration-300 ${
               moment === 'dia' 
                 ? 'bg-warm-white border-[#C97D65] text-[#C97D65] shadow-sm' 
-                : 'bg-warm-white/40 border-[#F2EEE7] text-[#5F5A55]/70 hover:bg-warm-white hover:border-[#E8E2D8]'
+                : 'bg-warm-white/45 border-[#F2EEE7] text-[#5F5A55]/70 hover:bg-warm-white'
             }`}
           >
-            <Sun className={`w-4 h-4 transition-colors ${moment === 'dia' ? 'text-amber-500 fill-amber-50' : ''}`} />
-            Período do Dia
+            <Sun className="w-3.5 h-3.5 text-amber-500" />
+            Durante o Dia
           </button>
           <button 
             onClick={() => setMoment('noite')}
-            className={`flex items-center justify-center gap-2 py-3 px-4 rounded-xl border font-display font-medium text-sm transition-all duration-300 ${
+            className={`flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-lg border font-display font-semibold text-xs transition-all duration-300 ${
               moment === 'noite' 
                 ? 'bg-warm-white border-[#C97D65] text-[#C97D65] shadow-sm' 
-                : 'bg-warm-white/40 border-[#F2EEE7] text-[#5F5A55]/70 hover:bg-warm-white hover:border-[#E8E2D8]'
+                : 'bg-warm-white/45 border-[#F2EEE7] text-[#5F5A55]/70 hover:bg-warm-white'
             }`}
           >
-            <Moon className={`w-4 h-4 transition-colors ${moment === 'noite' ? 'text-indigo-400 fill-indigo-50' : ''}`} />
-            Período da Noite
+            <Moon className="w-3.5 h-3.5 text-indigo-400" />
+            Durante a Noite
           </button>
         </div>
 
-        {/* Activity Choice */}
-        <div className="bg-warm-white p-5 rounded-2xl border border-[#F2EEE7] shadow-sm space-y-3">
-          <span className="text-xs font-semibold uppercase tracking-wider text-[#5F5A55]/70 font-display block mb-1">O que o bebê estará fazendo?</span>
+        {/* Activity Buttons Grid */}
+        <div className="bg-warm-white p-4 rounded-xl border border-[#F2EEE7] shadow-sm space-y-2.5">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-[#5F5A55]/70 font-display block">O bebê estará:</span>
           
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-1.5">
             {[
-              { id: 'dormindo', label: 'Sono no berço', icon: Moon },
-              { id: 'brincando', label: 'Brincadeiras', icon: Gamepad2 },
-              { id: 'passeando', label: 'Passeio fora', icon: Compass },
-              { id: 'colo_sling', label: 'No Colo / Sling', icon: Baby }
+              { id: 'brincando', label: 'Acordado', icon: Gamepad2 },
+              { id: 'dormindo', label: 'Dormindo', icon: Moon },
+              { id: 'colo_sling', label: 'Colo ou Sling', icon: Baby },
+              { id: 'passeando', label: 'Passeando', icon: Compass }
             ].map((actObj) => {
               const ActionIcon = actObj.icon;
               const isSelected = activity === actObj.id;
@@ -153,13 +140,13 @@ export default function InteractiveAppMockup() {
                 <button
                   key={actObj.id}
                   onClick={() => setActivity(actObj.id as BabyActivity)}
-                  className={`flex items-center gap-2.5 p-2 px-3 rounded-lg border text-left text-xs transition-all duration-200 ${
+                  className={`flex items-center gap-1.5 p-2 rounded-lg border text-left text-[11px] transition-all duration-200 ${
                     isSelected
-                      ? 'bg-peach-baby/10 border-peach-baby/60 text-[#BD5B3E] font-medium'
-                      : 'bg-transparent border-[#F2EEE7] text-[#5F5A55]/80 hover:bg-[#FDFBF7] hover:border-peach-baby/20'
+                      ? 'bg-peach-baby/10 border-[#C97D65] text-[#C97D65] font-bold'
+                      : 'bg-transparent border-[#F2EEE7] text-[#5F5A55]/80 hover:bg-[#FDFBF7]'
                   }`}
                 >
-                  <ActionIcon className={`w-3.5 h-3.5 ${isSelected ? 'text-[#C97D65]' : 'text-[#8E857C]'}`} />
+                  <ActionIcon className="w-3.5 h-3.5 shrink-0" />
                   {actObj.label}
                 </button>
               );
@@ -167,189 +154,224 @@ export default function InteractiveAppMockup() {
           </div>
         </div>
 
-        {/* Room configuration with Toggle Switch */}
-        <div className="flex justify-between items-center bg-warm-white p-4 px-5 rounded-2xl border border-[#F2EEE7] shadow-sm">
-          <div className="flex items-center gap-3">
-            <div className={`p-2 rounded-lg ${hasAC ? 'bg-indigo-50 text-[#5B88B5]' : 'bg-brand-text/5 text-brand-text-light'}`}>
-              <Wind className="w-5 h-5" />
-            </div>
-            <div>
-              <p className="text-sm font-semibold font-display text-brand-text">Ar condicionado ligado?</p>
-              <p className="text-xs text-brand-text-light">Estabiliza o clima, reduzindo umidade.</p>
+        {/* Air conditioning option */}
+        <div className="flex justify-between items-center bg-warm-white p-3.2 px-4 rounded-xl border border-[#F2EEE7] shadow-sm">
+          <div className="flex items-center gap-2">
+            <Wind className="w-4 h-4 text-[#C97D65]" />
+            <div className="text-left">
+              <p className="text-xs font-bold font-display text-brand-text">Ar Condicionado?</p>
+              <p className="text-[10px] text-brand-text-light">Ative se houver vento/draft</p>
             </div>
           </div>
           <button 
             onClick={() => setHasAC(!hasAC)}
-            className={`w-12 h-6 flex items-center rounded-full p-0.5 transition-colors duration-300 outline-none ${
+            className={`w-10 h-5.5 flex items-center rounded-full p-0.5 transition-colors duration-300 outline-none ${
               hasAC ? 'bg-sage-green' : 'bg-zinc-200'
             }`}
           >
-            <div className={`bg-white w-5 h-5 rounded-full shadow-md transform transition-transform duration-300 ${
-              hasAC ? 'translate-x-6' : 'translate-x-0'
+            <div className={`bg-white w-4.5 h-4.5 rounded-full shadow-md transform transition-transform duration-300 ${
+              hasAC ? 'translate-x-4.5' : 'translate-x-0'
             }`} />
           </button>
         </div>
       </div>
 
-      {/* Decorative Center elements (1 Col) */}
-      <div className="hidden lg:flex lg:col-span-1 items-center justify-center flex-col text-[#C97D65]/40 text-center">
-        <ChevronRight className="w-8 h-8 animate-pulse" />
+      {/* CENTER DECORATION: Chevron pulse (1 Col) */}
+      <div className="hidden lg:flex lg:col-span-1 items-center justify-center text-[#C97D65]/40 text-center">
+        <ChevronRight className="w-6 h-6 animate-pulse" />
       </div>
 
-      {/* Phone Mockup Right Side (6 Cols) */}
+      {/* RIGHT COLUMN: Realistic high-fidelity smartphone mockup matching user's real screenshots (6 Cols) */}
       <div className="lg:col-span-6 flex justify-center items-center z-10 w-full">
-        {/* Smartphone Wrapper Frame */}
-        <div className="relative w-[310px] sm:w-[325px] h-[640px] bg-slate-900 rounded-[50px] shadow-premium-lg p-2.5 border-[4px] border-[#8E857C]/40 relative">
+        
+        {/* Smartphone Outer Frame */}
+        <div className="relative w-[305px] h-[610px] bg-slate-900 rounded-[45px] p-2.5 border-[4.5px] border-[#8E857C]/40 shadow-premium-lg">
           
-          {/* Dynamic soft background elements sticking out of the smartphone frame layout */}
-          <div className="absolute top-10 -right-8 w-12 h-12 bg-warm-white rounded-full flex items-center justify-center shadow-md border border-[#F2EEE7] animate-[bounce_5s_infinite]">
-            <span className="text-lg">⭐</span>
+          {/* External visual elements out of frame for luxury premium tech startup style */}
+          <div className="absolute top-10 -right-7 w-11 h-11 bg-white rounded-full flex items-center justify-center shadow-md border border-[#F2EEE7]">
+            <span className="text-base select-none">⭐</span>
           </div>
-          <div className="absolute bottom-24 -left-8 w-14 h-14 bg-warm-white rounded-full flex items-center justify-center shadow-md border border-[#F2EEE7] rotate-12">
-            <span className="text-xl">🧸</span>
+          <div className="absolute bottom-20 -left-7 w-[52px] h-[52px] bg-white rounded-full flex items-center justify-center shadow-md border border-[#F2EEE7]">
+            <span className="text-lg select-none">🧸</span>
           </div>
-          <div className="absolute top-1/2 -right-12 w-14 h-14 bg-warm-white rounded-full flex items-center justify-center shadow-md border border-[#F2EEE7] -rotate-6">
-            <span className="text-xl font-medium text-peach-baby">❤️</span>
-          </div>
-
-          {/* Smartphone Ear speaker Notch */}
-          <div className="absolute top-5 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-3xl z-40 flex items-center justify-center">
-            {/* Camera dot & speaker line */}
-            <div className="w-2 h-2 bg-slate-800 rounded-full mr-2" />
-            <div className="w-12 h-1 bg-slate-800 rounded" />
+          
+          {/* iOS Ear Notch */}
+          <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-28 h-5.5 bg-black rounded-full z-40 flex items-center justify-center">
+            <div className="w-1.5 h-1.5 bg-slate-800 rounded-full mr-2" />
+            <div className="w-10 h-1 bg-slate-800 rounded" />
           </div>
 
-          {/* Phone Inner Screen Screen Screen */}
-          <div className="w-full h-full bg-[#FFFDF9] rounded-[42px] overflow-hidden flex flex-col relative border border-slate-950 font-sans text-brand-text select-none">
+          {/* Smartphone Inner Screen Contents */}
+          <div className="w-full h-full bg-[#FCF9F5] rounded-[36px] overflow-hidden flex flex-col relative border border-slate-950 font-sans text-brand-text select-none">
             
-            {/* Clock & Status top bar inside the iOS screen */}
-            <div className="pt-6 px-7 pb-2 flex justify-between items-center text-[11px] font-semibold text-[#8E857C] font-display">
-              <span>09:41</span>
-              <div className="flex items-center gap-1.5 pt-1">
-                <div className="w-3 h-2 bg-brand-text/50 rounded-sm" />
-                <div className="w-2.5 h-2.5 bg-brand-text/50 rounded-full" />
+            {/* Top iOS Status Bar */}
+            <div className="pt-4.5 px-6 pb-1 flex justify-between items-center text-[10px] font-bold text-[#8E857C] font-display">
+              <span>22:33</span>
+              <div className="flex items-center gap-1">
+                <span>81%</span>
+                <div className="w-3.5 h-2 bg-brand-text/50 rounded-sm" />
               </div>
             </div>
 
-            {/* App Nav Bar */}
-            <div className="px-5 py-2.5 flex items-center justify-between border-b border-[#F2EEE7] bg-[#FFFDF9]/80 backdrop-blur-md">
-              <div className="flex items-center gap-2">
-                <div className="w-7 h-7 bg-peach-baby/30 rounded-lg flex items-center justify-center">
-                  <span className="text-xs">🧸</span>
-                </div>
-                <div>
-                  <h4 className="font-display font-bold text-xs tracking-tight text-brand-text">ClimaBaby</h4>
-                  <p className="text-[9px] text-[#8E857C] font-semibold uppercase tracking-wider">Premium Care</p>
-                </div>
-              </div>
-              
-              <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold border ${statusStyle.bg} ${statusStyle.text} ${statusStyle.border} font-display`}>
-                {statusStyle.name}
-              </span>
-            </div>
+            {/* Premium Header conforming EXACTLY to the Screenshots provided! */}
+            <div className="px-4 py-2 flex items-center justify-between bg-[#FFFDF9]/60 backdrop-blur-sm border-b border-[#F2EEE7]">
+              {/* Menu Button as on Screen 1 */}
+              <button className="flex items-center gap-1 px-2 py-1 rounded-full bg-white border border-[#E8E2D8] shadow-[0_1px_2px_rgba(0,0,0,0.02)] text-[10px] font-bold text-[#5F5A55]">
+                <Menu className="w-3 h-3 text-[#5F5A55]" />
+                Menu
+              </button>
 
-            {/* App main container (Scrollable mimicking real app experience) */}
-            <div className="flex-1 overflow-y-auto px-5 py-4 space-y-4 text-left scrollbar-thin">
-              
-              {/* Screen Top Header: Current active Temperature display in App */}
-              <div className="bg-[#F8F4EE] rounded-2xl p-4 border border-[#F2EEE7] relative overflow-hidden">
-                <p className="text-[10px] uppercase font-bold tracking-wider text-[#8E857C] font-display">Ambiente Detectado</p>
-                <div className="flex items-baseline gap-1 mt-1">
-                  <span className="text-3xl font-bold font-display text-brand-text">{temp}°C</span>
-                  <span className="text-xs text-[#8E857C] font-medium">no quarto</span>
+              {/* Logo: Hanger + Name custom styled */}
+              <div className="flex items-center gap-1">
+                {/* Custom representation of ClimaBaby hanger logo */}
+                <div className="w-4 h-4 bg-transparent border-t border-l border-r border-[#C97D65] rounded-t-full relative -bottom-0.5 flex justify-center">
+                  <div className="w-2.5 h-1.5 bg-peach-baby/40 rounded-b-md absolute bottom-0" />
                 </div>
-                <p className="text-xs font-semibold mt-1.5 text-[#5F5A55]/90 font-display flex items-center gap-1">
-                  <span className="text-xs">🌡️</span> {rec.tempRange}
-                </p>
-                
-                {/* Micro illustration of baby state inside app */}
-                <div className="absolute right-4 bottom-2 bg-white/70 p-2 rounded-xl border border-white flex flex-col items-center">
-                  <span className="text-base">
-                    {activity === 'dormindo' ? '😴' : activity === 'brincando' ? '🧸' : activity === 'passeando' ? '🌤️' : '🤱'}
-                  </span>
-                  <span className="text-[8px] font-bold text-[#8E857C] capitalize">{activity.replace('_', ' ')}</span>
-                </div>
-              </div>
-
-              {/* Recommendation Title */}
-              <div>
-                <span className="text-[10px] font-bold text-brand-text-light uppercase tracking-wider font-display block">
-                  Combinação Recomendada
+                <span className="font-display font-extrabold text-xs tracking-tight text-neutral-800">
+                  Clima<span className="text-[#C97D65]">Baby</span>
                 </span>
-                <p className="text-xs text-brand-text-light leading-snug">
-                  Toque para ver detalhes de cada camada.
+              </div>
+
+              {/* Bell notification button */}
+              <button className="w-7 h-7 bg-white rounded-full border border-[#E8E2D8] flex items-center justify-center relative shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+                <Bell className="w-3 h-3 text-[#5F5A55]" />
+                <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-[#C97D65] rounded-full" />
+              </button>
+            </div>
+
+            {/* Simulated Live App inside scrollable frame container */}
+            <div className="flex-1 overflow-y-auto px-4 py-3.5 space-y-3.5 text-left scrollbar-thin">
+              
+              {/* Recommendation Top Label Row */}
+              <div className="flex flex-col items-center space-y-1">
+                <span className="text-[9px] font-extrabold tracking-wider text-peach-baby font-display bg-peach-baby/12 px-2.5 py-0.5 rounded-full uppercase">
+                  LOOK RECOMENDADO
+                </span>
+                
+                {/* Temperature label header matching Screen 1 exactly */}
+                <h4 className="font-display font-black text-base text-brand-text flex items-center gap-1.5 mt-0.5">
+                  <span className="text-xl leading-none">{climateTerm.emoji}</span>
+                  Clima {climateTerm.name}
+                </h4>
+
+                {/* Micro indicators pill */}
+                <div className="flex gap-1 mt-1">
+                  <span className="text-[8px] font-bold bg-white px-2 py-0.5 rounded-md border border-[#F2EEE7] text-brand-text flex items-center gap-1">
+                    <span className="text-[10px] text-amber-500 select-none">☀️</span> {moment === 'dia' ? 'Dia' : 'Noite'}
+                  </span>
+                  <span className="text-[8px] font-bold bg-white px-2 py-0.5 rounded-md border border-[#F2EEE7] text-brand-text flex items-center gap-1 capitalize">
+                    <span className="text-[10px] text-rose-300 select-none">❤️</span> {activity.replace('_', ' ')}
+                  </span>
+                </div>
+              </div>
+
+              {/* Card 1: Warm star comment label */}
+              <div className="bg-yellow-50/20 rounded-xl p-3 border border-[#FDF6E2] text-left">
+                <p className="text-[10px] text-brand-text leading-relaxed font-medium flex items-start gap-1.5">
+                  <span className="text-[#C97D65] text-xs">✨</span>
+                  {climateTerm.desc}
                 </p>
               </div>
 
-              {/* Reactive Recommended items stack */}
-              <div className="space-y-2">
-                <AnimatePresence mode="popLayout">
-                  {rec.clothingCombination.map((item, index) => (
-                    <motion.div
-                      key={item.name}
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.25, delay: index * 0.05 }}
-                      className="p-3 bg-[#FFFDF9] rounded-xl border border-[#F2EEE7] flex items-center gap-3 shadow-none hover:border-peach-baby/40 transition-colors"
-                    >
-                      <div className="bg-[#F8F4EE] p-2 rounded-lg flex items-center justify-center shrink-0">
-                        {renderItemIcon(item.icon)}
+              {/* Card 2: Metodo de camadas ClimaBaby matching Screen 1 exactly */}
+              <div className="bg-white rounded-2xl p-3.5 border border-[#F2EEE7] shadow-[0_2px_4px_rgba(95,90,85,0.02)]">
+                <span className="text-[8px] font-extrabold uppercase tracking-wider text-[#A84A2E] font-display block">
+                  MÉTODO DE CAMADAS CLIMABABY
+                </span>
+                <h5 className="font-display font-extrabold text-[13px] text-brand-text mt-0.5">
+                  {layerNum} de Proteção
+                </h5>
+                <p className="text-[10px] text-brand-text-light/95 leading-normal mt-1">
+                  Proteção leve e equilibrada para o bebê se divertir e se movimentar com total liberdade de forma aconchegante.
+                </p>
+
+                {/* Camada status capsule matching Screen 1 bottom pill style */}
+                <div className="mt-2.5 flex justify-between items-center py-1.5 px-2.5 rounded-md border border-dashed border-blue-200 bg-blue-50/15 text-[10px] font-bold text-blue-700 font-display">
+                  <span className="flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-sm" />
+                    Camada Base
+                  </span>
+                  <span className="text-[8px] font-extrabold bg-blue-100 text-blue-700 px-1 py-0.2 rounded">OK</span>
+                </div>
+              </div>
+
+              {/* Card 3: Selected Clothes Display side-by-side matching Screen 1 image layout */}
+              <div className="space-y-1.5">
+                <span className="text-[9px] font-extrabold text-[#5F5A55] uppercase tracking-wider font-display block">
+                  👕 Peças Escolhidas para o Look
+                </span>
+                
+                {/* 2-Column responsive items layout of actual clothes photos or custom designs */}
+                <div className="grid grid-cols-2 gap-2">
+                  {rec.clothingCombination.slice(0, 2).map((item) => (
+                    <div key={item.name} className="bg-white p-2.5 rounded-xl border border-[#F2EEE7] flex flex-col items-center text-center space-y-1 shadow-[0_2px_3px_rgba(0,0,0,0.01)] transition-transform duration-300">
+                      
+                      {/* Interactive illustration mockup for Body suit / Pants */}
+                      <div className="w-14 h-14 bg-soft-cream/30 rounded-lg flex items-center justify-center border border-dashed border-[#F2EEE7] relative">
+                        {item.name.toLowerCase().includes('body') ? (
+                          <div className="text-2xl">👕</div>
+                        ) : (
+                          <div className="text-2xl">👖</div>
+                        )}
                       </div>
+                      
                       <div className="min-w-0">
-                        <div className="flex items-center gap-1.5">
-                          <h5 className="font-display font-bold text-xs text-brand-text truncate">{item.name}</h5>
-                          <span className={`text-[8px] px-1.5 py-0.2 rounded-full font-medium ${
-                            item.category === 'base' ? 'bg-[#FDFBF7] text-amber-600 border border-amber-100' :
-                            item.category === 'middle' ? 'bg-[#F2F6ED] text-emerald-600 border border-emerald-100' :
-                            item.category === 'outer' ? 'bg-indigo-50 text-indigo-600 border border-indigo-100' :
-                            'bg-rose-50 text-rose-600 border border-rose-100'
-                          }`}>
-                            {item.category}
-                          </span>
-                        </div>
-                        <p className="text-[9px] text-brand-text-light truncate">{item.description}</p>
+                        <h6 className="font-display font-extrabold text-[9px] text-brand-text leading-tight truncate">
+                          {item.name}
+                        </h6>
+                        <p className="text-[8px] text-[#8E857C] leading-none mt-0.5 truncate uppercase">
+                          {item.category}
+                        </p>
                       </div>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </div>
 
-              {/* Fabric Suggestions badge bundle */}
-              <div className="bg-[#FAF8F5] rounded-xl p-3 border border-[#F2EEE7]">
-                <p className="text-[9px] font-bold text-brand-text-light uppercase tracking-wider font-display mb-1.5">
-                  Tecidos Ideais Recomendados
-                </p>
-                <div className="flex flex-wrap gap-1">
-                  {rec.recommendedFabrics.map((fabric) => (
-                    <span key={fabric} className="text-[10px] bg-white px-2 py-0.5 rounded-md border border-[#F2EEE7] text-brand-text font-medium font-display shadow-[0_1px_2px_rgba(0,0,0,0.01)]">
-                      🌿 {fabric}
-                    </span>
+                      {/* Small visual pill tags like "AQUECE / LEVE" in green from real screenshots */}
+                      <div className="flex gap-1 pt-1 justify-center w-full">
+                        <span className="text-[7px] font-black tracking-tight text-[#8E857C]/80 px-1 py-0.2 uppercase border border-[#F2EEE7] rounded">
+                          Aquec
+                        </span>
+                        <span className="text-[7px] font-black tracking-tight text-emerald-700 bg-emerald-50 px-1 py-0.2 uppercase rounded">
+                          Leve
+                        </span>
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
 
-              {/* Safe sleep advisory quote block */}
-              <div className="bg-[#BFC8B2]/10 rounded-xl p-3 border.2 border-dashed border-[#BFC8B2]/30 text-left">
-                <div className="flex gap-2">
-                  <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
-                  <p className="text-[10px] text-[#5F5A55] leading-relaxed">
-                    <strong>Padrão de Segurança:</strong> {rec.safeSleepTip}
-                  </p>
-                </div>
-              </div>
-
-              {/* Tiny Mock pricing block to secure conversion in user interactive journey */}
-              <div className="pt-2 text-center">
-                <p className="text-[8px] text-brand-text-light font-medium tracking-tight">
-                  ClimaBaby Premium • Atualizado com Diretrizes Reais 2026
+              {/* Card 4: Orientaçao da consultora / Advisor Box matching Screen 2 visual structure */}
+              <div className="bg-[#FAF2EC] rounded-xl p-3.5 border border-[#F4E3D8] text-left relative overflow-hidden">
+                <span className="text-[8px] font-extrabold text-[#BD5B3E] uppercase tracking-wider font-display bg-[#F4C7B8]/30 px-2 py-0.5 rounded">
+                  ORIENTAÇÃO CLIMABABY 💛
+                </span>
+                <p className="text-[10px] text-brand-text leading-relaxed mt-2 font-display">
+                  Para o dia a dia de seu bebezinha em ambiente doméstico, focamos em conforto puro. O segredo é dar liberdade com tecidos naturais saudáveis, evitando excesso de suor na nuca do bebê.
                 </p>
               </div>
 
             </div>
 
-            {/* Simulated Smartphone Bottom indicator bar */}
-            <div className="py-2.5 text-center bg-white border-t border-[#F2EEE7] shrink-0">
+            {/* Bottom Smartphone Navigation bar matching style 100% */}
+            <div className="bg-white border-t border-[#F2EEE7] p-2.5 flex justify-around items-center shrink-0">
+              <div className="flex flex-col items-center text-[#C97D65] cursor-pointer">
+                <span className="text-xs">🏠</span>
+                <span className="text-[8px] font-black uppercase tracking-tight mt-0.5 font-display">Início</span>
+              </div>
+              <div className="flex flex-col items-center text-[#8E857C]/70">
+                <span className="text-xs">⏱️</span>
+                <span className="text-[8px] font-bold uppercase tracking-tight mt-0.5 font-display">Histórico</span>
+              </div>
+              <div className="flex flex-col items-center text-[#8E857C]/70">
+                <span className="text-xs">❤️</span>
+                <span className="text-[8px] font-bold uppercase tracking-tight mt-0.5 font-display">Favoritos</span>
+              </div>
+              <div className="flex flex-col items-center text-[#8E857C]/70">
+                <span className="text-xs">•••</span>
+                <span className="text-[8px] font-bold uppercase tracking-tight mt-0.5 font-display">Mais</span>
+              </div>
+            </div>
+
+            {/* iOS Indicator Home bar */}
+            <div className="py-2.5 text-center bg-white shrink-0">
               <div className="w-24 h-1 bg-[#8E857C]/40 mx-auto rounded-full" />
             </div>
 

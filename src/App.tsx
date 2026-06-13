@@ -240,9 +240,6 @@ export default function App() {
                     <h4 className="font-display font-semibold text-brand-text text-sm sm:text-base leading-snug">
                       "{card.text}"
                     </h4>
-                    <p className="text-[11px] text-brand-text-light font-medium mt-1">
-                      Dúvida frequente de 93% das mães de recém-nascidos.
-                    </p>
                   </div>
                 </div>
               ))}
