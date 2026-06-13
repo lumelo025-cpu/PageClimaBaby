@@ -1,0 +1,6 @@
+{
+  "name": "ClimaBaby",
+  "description": "Landing page premium de alta conversão para o app ClimaBaby - O guia inteligente de roupas para seu bebê.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
