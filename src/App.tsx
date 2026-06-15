@@ -260,7 +260,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-0 sm:px-5">
             <div className="relative w-full overflow-hidden sm:rounded-[32px] border-b sm:border border-[#F2EEE7] bg-warm-white shadow-sm sm:shadow-premium select-none">
               <img 
-                src="https://site.maecompleta.com/wp-content/uploads/2026/06/Captura-de-tela-2026-06-14-223959.png" 
+                src="https://site.maecompleta.com/wp-content/uploads/2026/06/Captura-de-tela-2026-06-14-230041.png" 
                 alt="O resultado detalhado fornecido pelo ClimaBaby" 
                 className="w-full h-auto object-cover max-h-[720px] sm:max-h-none transition-transform duration-300 hover:scale-[1.005]"
                 referrerPolicy="no-referrer"
