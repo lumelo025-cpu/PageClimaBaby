@@ -23,7 +23,7 @@ import {
   CreditCard,
   ShoppingBag
 } from 'lucide-react';
-import InteractiveAppMockup from './components/InteractiveAppMockup';
+
 
 export default function App() {
   // Mobile Nav states
@@ -78,10 +78,10 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-warm-white font-sans text-brand-text flex flex-col relative antialiased selection:bg-peach-baby/40 selection:text-brand-text">
+    <div className="min-h-screen bg-soft-cream font-sans text-brand-text flex flex-col relative antialiased selection:bg-peach-baby/40 selection:text-brand-text">
       
       {/* 1. Header Navigation Bar (Premium glassmorphic styled) */}
-      <header className="sticky top-0 z-40 bg-[#FFFDF9]/80 backdrop-blur-md border-b border-[#F2EEE7]/80 transition-all">
+      <header className="sticky top-0 z-40 bg-warm-white/80 backdrop-blur-md border-b border-[#F2EEE7]/80 transition-all">
         <div className="max-w-7xl mx-auto px-5 h-16 sm:h-20 flex items-center justify-between">
           
           {/* Logo element resembling a digital startup and App store listing */}
@@ -100,17 +100,17 @@ export default function App() {
 
           {/* Desktop Navigation Links (Understated minimalist Apple-like style) */}
           <nav className="hidden md:flex items-center gap-8 text-[13px] font-medium text-brand-text/80">
-            <button onClick={() => scrollToSection('dor-section')} className="hover:text-[#BD5B3E] transition-colors cursor-pointer">Quantas vezes pensou</button>
-            <button onClick={() => scrollToSection('funcionamento-section')} className="hover:text-[#BD5B3E] transition-colors cursor-pointer">Como funciona</button>
-            <button onClick={() => scrollToSection('diferenciais-section')} className="hover:text-[#BD5B3E] transition-colors cursor-pointer">Diferenciais</button>
-            <button onClick={() => scrollToSection('faq-section')} className="hover:text-[#BD5B3E] transition-colors cursor-pointer">Dúvidas comuns</button>
+            <button onClick={() => scrollToSection('dor-section')} className="hover:text-brand-primary transition-colors cursor-pointer">Quantas vezes pensou</button>
+            <button onClick={() => scrollToSection('funcionamento-section')} className="hover:text-brand-primary transition-colors cursor-pointer">Como funciona</button>
+            <button onClick={() => scrollToSection('diferenciais-section')} className="hover:text-brand-primary transition-colors cursor-pointer">Diferenciais</button>
+            <button onClick={() => scrollToSection('faq-section')} className="hover:text-brand-primary transition-colors cursor-pointer">Dúvidas comuns</button>
           </nav>
 
           {/* CTA header button */}
           <div className="flex items-center gap-3">
             <button 
               onClick={() => scrollToSection('offer-section')}
-              className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-brand-text text-warm-white text-xs sm:text-sm font-semibold tracking-tight font-display hover:bg-[#4D4843]/90 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm flex items-center gap-1.5 cursor-pointer"
+              className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-button-primary text-warm-white text-xs sm:text-sm font-semibold tracking-tight font-display hover:opacity-90 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-sm flex items-center gap-1.5 cursor-pointer"
             >
               Quero meu ClimaBaby
             </button>
@@ -123,99 +123,27 @@ export default function App() {
       <main className="flex-1">
 
         {/* =========================================================================
-            PRIMEIRA DOBRA (HERO SECTION - THE MOST IMPORTANT VALUE IN SALES)
+            PRIMEIRA DOBRA — BANNER DESTAQUE PRINCIPAL (TELA CHEIA NO MOBILE)
             ========================================================================= */}
-        <section className="relative pt-8 pb-16 sm:py-20 lg:py-24 overflow-hidden border-b border-[#F2EEE7]">
-          {/* Subtle decoration elements overlay of premium tech start-ups */}
-          <div className="absolute top-10 left-10 w-48 h-48 bg-soft-cream rounded-full blur-3xl pointer-events-none opacity-85" />
-          
-          <div className="max-w-7xl mx-auto px-5">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-              
-              {/* Left Column Copy (7 Cols on large screens) */}
-              <div className="lg:col-span-6 space-y-6 text-left">
-                
-                {/* Micro Authority Pill */}
-                <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-peach-baby/15 text-[#BD5B3E] text-xs font-semibold tracking-tight font-display animate-fade-in border border-[#F4C7B8]/30">
-                  <span className="text-[11px] animate-[pulse_1.5s_infinite]">✨</span>
-                  O guia inteligente para vestir seu bebê
-                </div>
-
-                {/* Ultimate Hero Title */}
-                <h1 className="font-display text-4xl sm:text-5xl lg:text-5xl font-extrabold tracking-tight text-brand-text leading-[1.1]">
-                  Nunca mais fique na dúvida se seu bebê está com <span className="text-[#C97D65] underline decoration-[#F4C7B8] decoration-4 underline-offset-4">frio ou calor</span>.
-                </h1>
-
-                {/* Engaging Subheadline */}
-                <p className="text-brand-text-light text-base sm:text-lg leading-relaxed max-w-xl">
-                  Em poucos segundos, o <strong>ClimaBaby</strong> analisa o ambiente, o momento do dia e a rotina do seu bebê para recomendar a combinação ideal de roupas com conforto absoluto e total segurança fisiológica.
-                </p>
-
-                {/* Beautiful CTAs & App Store badging indicators */}
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-1.5">
-                  <button 
-                    onClick={() => scrollToSection('offer-section')}
-                    className="py-4 px-8 rounded-full bg-brand-text text-warm-white text-base font-bold font-display tracking-tight text-center shadow-lg hover:bg-[#3D3A36] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer"
-                  >
-                    Quero meu ClimaBaby
-                    <ChevronRight className="w-5 h-5 text-peach-baby group-hover:translate-x-1 transition-transform" />
-                  </button>
-
-                  {/* App store listing badge placeholder for high conversion validation */}
-                  <div className="flex flex-col justify-center text-center sm:text-left">
-                    <div className="flex items-center justify-center sm:justify-start gap-1">
-                      {[1, 2, 3, 4, 5].map((s) => (
-                        <Star key={s} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                      ))}
-                      <span className="text-xs font-extrabold text-brand-text font-display pt-0.5 ml-1">4.9/5</span>
-                    </div>
-                    <p className="text-[11px] text-brand-text-light font-medium mt-0.5">
-                      Excelente avaliações • mais de 12 mil famílias tranquilas
-                    </p>
-                  </div>
-                </div>
-
-                {/* Bullets directly below primary CTA */}
-                <div className="pt-2 border-t border-[#F2EEE7]/80 grid grid-cols-3 gap-2">
-                  {[
-                    { text: 'Acesso imediato', desc: 'Sem aguardar entregas' },
-                    { text: 'Pagamento único', desc: 'Livre de anuidade' },
-                    { text: 'Use para sempre', desc: 'Acesso vitalício' }
-                  ].map((benefit, i) => (
-                    <div key={i} className="space-y-0.5">
-                      <div className="flex items-center gap-1.5">
-                        <div className="w-4 h-4 rounded-full bg-sage-green/20 flex items-center justify-center shrink-0">
-                          <Check className="w-2.5 h-2.5 text-emerald-800" />
-                        </div>
-                        <span className="text-xs font-bold text-brand-text font-display">{benefit.text}</span>
-                      </div>
-                      <p className="text-[10px] text-brand-text-light pl-5 hidden sm:block">{benefit.desc}</p>
-                    </div>
-                  ))}
-                </div>
-
-              </div>
-
-              {/* Right Column Layout: Simulated Live App experience mockup panel (6 cols) */}
-              <div className="lg:col-span-6 w-full flex justify-center">
-                <div className="w-full max-w-lg">
-                  {/* Rendering our spectacular responsive interactive simulator mockup */}
-                  <InteractiveAppMockup />
-                </div>
-              </div>
-
+        <section className="w-full bg-soft-cream border-b border-[#F2EEE7]/80 overflow-hidden py-0 sm:py-8">
+          <div className="max-w-7xl mx-auto px-0 sm:px-5">
+            <div className="relative w-full overflow-hidden sm:rounded-[32px] border-b sm:border border-[#F2EEE7] bg-warm-white shadow-sm sm:shadow-premium select-none">
+              <img 
+                src="https://site.maecompleta.com/wp-content/uploads/2026/06/Captura-de-tela-2026-06-14-222055.png" 
+                alt="ClimaBaby App Banner de Boas-vindas" 
+                className="w-full h-auto object-cover max-h-[640px] sm:max-h-none"
+                referrerPolicy="no-referrer"
+              />
             </div>
           </div>
         </section>
 
 
-        {/* =========================================================================
-            SEÇÃO 2 — A DOR DA MÃE (EMOTIONAL & RELATABLE SECTION)
-            ========================================================================= */}
-        <section id="dor-section" className="py-16 sm:py-24 bg-soft-cream/30 border-b border-[#F2EEE7]">
+
+        <section id="dor-section" className="py-16 sm:py-24 bg-soft-cream border-b border-[#F2EEE7]">
           <div className="max-w-4xl mx-auto px-5 text-center">
             
-            <span className="text-xs font-bold uppercase tracking-wider text-[#BD5B3E] font-display">A Maternidade Real</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-brand-primary font-display">A Maternidade Real</span>
             <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 text-brand-text">
               Quantas vezes você já pensou...
             </h2>
@@ -246,9 +174,9 @@ export default function App() {
             </div>
 
             {/* Emotional and reassuring transition quote */}
-            <div className="mt-10 p-5 rounded-2xl bg-peach-baby/10 border border-[#F4C7B8]/40 inline-block max-w-2xl text-center">
-              <p className="text-sm font-semibold text-[#BD5B3E] font-display flex items-center justify-center gap-2">
-                <Heart className="w-4 h-4 fill-[#F4C7B8] inline shrink-0" />
+            <div className="mt-10 p-5 rounded-2xl bg-peach-baby/20 border border-peach-baby/45 inline-block max-w-2xl text-center">
+              <p className="text-sm font-semibold text-brand-primary font-display flex items-center justify-center gap-2">
+                <Heart className="w-4 h-4 fill-affective text-affective inline shrink-0" />
                 "Agora você pode ter uma orientação rápida, científica e prática sempre que surgir essa dúvida."
               </p>
             </div>
@@ -257,82 +185,26 @@ export default function App() {
         </section>
 
 
+
+
+
         {/* =========================================================================
             SEÇÃO 3 — COMO FUNCIONA (SMEAR & CLEAN STEP-BY-STEP PROCESS)
             ========================================================================= */}
-        <section id="funcionamento-section" className="py-16 sm:py-24 bg-warm-white border-b border-[#F2EEE7]">
+        <section id="funcionamento-section" className="py-16 sm:py-24 bg-soft-cream border-b border-[#F2EEE7]">
           <div className="max-w-6xl mx-auto px-5">
             
             <div className="text-center max-w-xl mx-auto mb-16">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#A0A994] font-display">Simplicidade Científica</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-brand-primary font-display">Simplicidade Científica</span>
               <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight mt-1.5 text-brand-text">
                 Como funciona o ClimaBaby
               </h2>
-              <p className="text-brand-text-light text-sm mt-1">
-                Uma recomendação ultra personalizada em menos de 5 segundos no celular.
-              </p>
-            </div>
-
-            {/* Timelines Flow Card */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
-              
-              {/* Connector lines behind (Desktop only) */}
-              <div className="hidden lg:block absolute top-[20%] left-[25%] right-[25%] h-0.5 border-t-2 border-dashed border-[#F2EEE7] -z-10" />
-
-              {/* Step 1 */}
-              <div className="bg-soft-cream/40 p-8 rounded-3xl border border-[#F2EEE7]/85 relative hover:border-[#C97D65]/20 hover:bg-[#FDFBF7] transition-all">
-                <span className="absolute top-4 left-4 w-8 h-8 rounded-full bg-peach-baby/30 text-[#BD5B3E] flex items-center justify-center font-display font-extrabold text-sm shadow-inner">
-                  1
-                </span>
-                <div className="flex flex-col items-center text-center mt-4">
-                  <div className="w-14 h-14 bg-white rounded-2xl shadow-sm border border-[#F2EEE7] flex items-center justify-center text-2xl mb-5 select-none">
-                    🌡️
-                  </div>
-                  <h3 className="font-display font-bold text-lg text-brand-text">Informe o clima real</h3>
-                  <p className="text-[13px] text-brand-text-light mt-2 max-w-xs">
-                    Insira a temperatura atual ou deixe o aplicativo detectar de forma autônoma baseada na sua localização de GPS com correções para ar-condicionado.
-                  </p>
-                </div>
-              </div>
-
-              {/* Step 2 */}
-              <div className="bg-soft-cream/40 p-8 rounded-3xl border border-[#F2EEE7]/85 relative hover:border-[#C97D65]/20 hover:bg-[#FDFBF7] transition-all">
-                <span className="absolute top-4 left-4 w-8 h-8 rounded-full bg-peach-baby/30 text-[#BD5B3E] flex items-center justify-center font-display font-extrabold text-sm shadow-inner">
-                  2
-                </span>
-                <div className="flex flex-col items-center text-center mt-4">
-                  <div className="w-14 h-14 bg-white rounded-2xl shadow-sm border border-[#F2EEE7] flex items-center justify-center text-2xl mb-5 select-none">
-                    🕰️
-                  </div>
-                  <h3 className="font-display font-bold text-lg text-brand-text">Defina o momento</h3>
-                  <p className="text-[13px] text-brand-text-light mt-2 max-w-xs">
-                    Indique se é dia ou noite e declare se o seu bebê estará descansando, em movimento ativo para brincar ou aconchegado no sling que emite calor corporal.
-                  </p>
-                </div>
-              </div>
-
-              {/* Step 3 */}
-              <div className="bg-soft-cream/40 p-8 rounded-3xl border border-[#F2EEE7]/85 relative hover:border-[#C97D65]/20 hover:bg-[#FDFBF7] transition-all">
-                <span className="absolute top-4 left-4 w-8 h-8 rounded-full bg-peach-baby/30 text-[#BD5B3E] flex items-center justify-center font-display font-extrabold text-sm shadow-inner">
-                  3
-                </span>
-                <div className="flex flex-col items-center text-center mt-4">
-                  <div className="w-14 h-14 bg-white rounded-2xl shadow-sm border border-[#F2EEE7] flex items-center justify-center text-2xl mb-5 select-none">
-                    🧸
-                  </div>
-                  <h3 className="font-display font-bold text-lg text-brand-text">Receba a receita ideal</h3>
-                  <p className="text-[13px] text-brand-text-light mt-2 max-w-xs">
-                    Curadoria detalhada especificando o empilhamento das camadas do bebê, gramatura de tecido ideal, TOGs recomendados e diretrizes pediátricas de sono seguro.
-                  </p>
-                </div>
-              </div>
-
             </div>
 
             {/* Quick check details in list underneath works */}
-            <div className="mt-12 bg-[#F8F4EE] p-5 rounded-2xl border border-[#F2EEE7] max-w-3xl mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div className="mt-12 bg-soft-cream p-5 rounded-2xl border border-[#F2EEE7] max-w-3xl mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <span className="text-xs font-semibold text-brand-text flex items-center gap-1.5 font-display">
-                <Info className="w-4 h-4 text-peach-baby shrink-0" />
+                <Info className="w-4 h-4 text-brand-primary shrink-0" />
                 Guia Técnico Inteligente
               </span>
               <div className="flex flex-wrap gap-x-6 gap-y-2">
@@ -345,18 +217,118 @@ export default function App() {
               </div>
             </div>
 
+            {/* Imagem recomendada inserida abaixo do Guia Técnico Inteligente */}
+            <div className="mt-8 max-w-3xl mx-auto overflow-hidden rounded-[24px] border border-[#F2EEE7] bg-warm-white p-2.5 shadow-sm sm:shadow-premium select-none">
+              <img 
+                src="https://site.maecompleta.com/wp-content/uploads/2026/06/Captura-de-tela-2026-06-14-223257.png" 
+                alt="ClimaBaby App Instruções Detalhadas" 
+                className="w-full h-auto object-cover rounded-[16px]"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+
           </div>
         </section>
 
 
         {/* =========================================================================
+            O RESULTADO QUE O APP ENTREGA — DETALHAMENTO DO RESULTADO FINAL
+            ========================================================================= */}
+        <section className="py-16 sm:py-24 bg-soft-cream border-b border-[#F2EEE7]/90 overflow-hidden">
+          <div className="max-w-6xl mx-auto px-5 mb-12">
+            
+            <div className="text-center max-w-xl mx-auto">
+              <span className="text-xs font-bold uppercase tracking-wider text-brand-primary font-display bg-peach-baby/25 px-2.5 py-1 rounded-full border border-peach-baby/40">
+                Resultado Completo
+              </span>
+              <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 text-brand-text">
+                O resultado que o ClimaBaby entrega
+              </h2>
+              <p className="text-brand-text-light text-sm mt-2 max-w-md mx-auto">
+                Uma recomendação detalhada, fácil de entender e personalizada para o conforto térmico exato que seu bebê precisa.
+              </p>
+            </div>
+          </div>
+
+          {/* Imagem do resultado entregue em tela cheia neste bloco */}
+          <div className="max-w-7xl mx-auto px-0 sm:px-5">
+            <div className="relative w-full overflow-hidden sm:rounded-[32px] border-b sm:border border-[#F2EEE7] bg-warm-white shadow-sm sm:shadow-premium select-none">
+              <img 
+                src="https://site.maecompleta.com/wp-content/uploads/2026/06/Captura-de-tela-2026-06-14-223959.png" 
+                alt="O resultado detalhado fornecido pelo ClimaBaby" 
+                className="w-full h-auto object-cover max-h-[720px] sm:max-h-none"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </div>
+        </section>
+
+
+        {/* =========================================================================
+            QUADRO INSTANTÂNEO DE IMAGEM 2 — EXATIDÃO VISUAL DE PEÇAS (appclimababy2.png)
+            ========================================================================= */}
+        <section className="py-16 sm:py-20 bg-soft-cream border-b border-[#F2EEE7]/85">
+          <div className="max-w-5xl mx-auto px-5 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            
+            {/* Real Screenshot 2 Device Mockup on the left for alternating balance */}
+            <div className="flex justify-center order-last md:order-first">
+              <div className="relative bg-[#1A1512] rounded-[38px] p-2.5 border-[3.5px] border-[#8E857C]/25 shadow-premium-lg">
+                {/* Smartphone notch decor */}
+                <div className="absolute top-3.5 left-1/2 transform -translate-x-1/2 w-20 h-4.5 bg-black rounded-full z-20 flex items-center justify-center">
+                  <div className="w-1.5 h-1.5 bg-stone-900 rounded-full mr-1.5" />
+                  <div className="w-8 h-0.5 bg-stone-900 rounded" />
+                </div>
+                {/* Visual containment field */}
+                <div className="rounded-[30px] overflow-hidden w-[240px] aspect-[9/19.5] bg-soft-cream flex items-center justify-center relative border border-slate-900/5">
+                  <img 
+                    src="https://site.maecompleta.com/wp-content/uploads/2026/06/appclimababy4.png" 
+                    alt="Peças de Roupa Recomendadas ClimaBaby"
+                    className="w-full h-full object-cover select-none pointer-events-none"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="text-left space-y-4">
+              <span className="text-[10px] font-extrabold text-brand-primary uppercase tracking-wider font-display bg-peach-baby/25 px-2.5 py-1 rounded-full border border-peach-baby/40">
+                Visualização Realista
+              </span>
+              <h3 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-brand-text leading-tight">
+                Entenda exatamente cada peça sugerida
+              </h3>
+              <p className="text-brand-text-light text-[13px] leading-relaxed">
+                Esqueça termos confusos ou subjetivos sobre empilhamento térmico. O ClimaBaby apresenta as fotos explícitas do tipo de roupa recomendado para o momento atual (como o clássico body de manga curta, mijãozinho de malha ou calça culote adequada), permitindo que você visualize a anatomia e as características de cada peça logo de cara.
+              </p>
+              <div className="space-y-3 pt-2">
+                {[
+                  'Fotografias claras das partes e itens recomendados',
+                  'Indicação do nível protetivo das fibras (Camada Base, Intermediária ou Blindagem)',
+                  'Símbolos de aquecimento e leveza projetados de forma compreensiva'
+                ].map((item, id) => (
+                  <div key={id} className="flex items-start gap-2.5">
+                    <Check className="w-3.5 h-3.5 text-sage-green bg-sage-green/20 rounded-full p-0.5 mt-0.5 shrink-0" />
+                    <span className="text-[12px] text-brand-text/90 font-medium">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+
+
+
+
+        {/* =========================================================================
             SEÇÃO 4 — O DIFERENCIAL CLIMABABY (APP-STORE STYLE GRID)
             ========================================================================= */}
-        <section id="diferenciais-section" className="py-16 sm:py-24 bg-soft-cream/30 border-b border-[#F2EEE7]">
+        <section id="diferenciais-section" className="py-16 sm:py-24 bg-soft-cream border-b border-[#F2EEE7]">
           <div className="max-w-6xl mx-auto px-5">
             
             <div className="text-center max-w-md mx-auto mb-16">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#BD5B3E] font-display">Detalhamento Premium</span>
+              <span className="text-xs font-bold uppercase tracking-wider text-brand-primary font-display font-semibold">Detalhamento Premium</span>
               <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight mt-1.5 text-brand-text">
                 O Diferencial ClimaBaby
               </h2>
@@ -419,26 +391,97 @@ export default function App() {
 
 
         {/* =========================================================================
+            QUADRO INSTANTÂNEO DE IMAGEM 3 — ORIENTAÇÃO CIENTÍFICA DOUBLE SHOWCASE (appclimababy4.png & appclimababy5.png)
+            ========================================================================= */}
+        <section className="py-16 sm:py-20 bg-soft-cream border-b border-[#F2EEE7]/85 overflow-hidden">
+          <div className="max-w-6xl mx-auto px-5 text-center">
+            
+            <div className="max-w-2xl mx-auto mb-12">
+              <span className="text-xs font-bold uppercase tracking-wider text-brand-primary font-display bg-peach-baby/25 px-2.5 py-1 rounded-full">
+                Selo de Qualidade
+              </span>
+              <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight mt-3 text-brand-text">
+                Diretrizes fisiológicas e de tecidos ideais
+              </h2>
+              <p className="text-brand-text-light text-[13px] mt-2 max-w-lg mx-auto">
+                Mais do que listas frias de vestuário, o ClimaBaby entrega explicações minuciosas baseadas na sensibilidade térmica ideal de recém-nascidos.
+              </p>
+            </div>
+
+            {/* Side-by-side or stacked device layout for the remaining real screens */}
+            <div className="flex flex-col md:flex-row items-center justify-center gap-10 lg:gap-16 mt-6">
+              
+              {/* Device 1: Tissues and Comfort Updates (appclimababy4.png) */}
+              <div className="flex flex-col items-center max-w-sm group">
+                <div className="relative bg-[#1A1512] rounded-[36px] p-2.5 border-[3px] border-[#8E857C]/25 shadow-premium-lg mb-4 hover:border-brand-primary/40 hover:-translate-y-1 transition-all duration-300">
+                  <div className="absolute top-3.5 left-1/2 transform -translate-x-1/2 w-20 h-4.5 bg-black rounded-full z-20 flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 bg-stone-900 rounded-full mr-1.5" />
+                    <div className="w-8 h-0.5 bg-stone-900 rounded" />
+                  </div>
+                  <div className="rounded-[28px] overflow-hidden w-[220px] aspect-[9/19.5] bg-soft-cream flex items-center justify-center relative border border-slate-900/5">
+                    <img 
+                      src="https://site.maecompleta.com/wp-content/uploads/2026/06/appclimababy4.png" 
+                      alt="Diretrizes de Vestuário ClimaBaby"
+                      className="w-full h-full object-cover select-none pointer-events-none"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                </div>
+                <h4 className="font-display font-extrabold text-brand-text text-sm">Tecidos Ideais e Conforto</h4>
+                <p className="text-[11px] text-brand-text-light text-center mt-1.5 leading-relaxed max-w-[250px]">
+                  Orientações sobre fibras naturais puras (Algodão Suedine vs Malha Canelada) para evitar brotoejas e alergias de pele.
+                </p>
+              </div>
+
+              {/* Device 2: Safe sleeping / Sleep signs (appclimababy5.png) */}
+              <div className="flex flex-col items-center max-w-sm group">
+                <div className="relative bg-[#1A1512] rounded-[36px] p-2.5 border-[3px] border-[#8E857C]/25 shadow-premium-lg mb-4 hover:border-brand-primary/40 hover:-translate-y-1 transition-all duration-300">
+                  <div className="absolute top-3.5 left-1/2 transform -translate-x-1/2 w-20 h-4.5 bg-black rounded-full z-20 flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 bg-stone-900 rounded-full mr-1.5" />
+                    <div className="w-8 h-0.5 bg-stone-900 rounded" />
+                  </div>
+                  <div className="rounded-[28px] overflow-hidden w-[220px] aspect-[9/19.5] bg-soft-cream flex items-center justify-center relative border border-slate-900/5">
+                    <img 
+                      src="https://site.maecompleta.com/wp-content/uploads/2026/06/appclimababy5.png" 
+                      alt="Sono Seguro no ClimaBaby"
+                      className="w-full h-full object-cover select-none pointer-events-none"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                </div>
+                <h4 className="font-display font-extrabold text-brand-text text-sm">Sono Seguro e Sinais Reais</h4>
+                <p className="text-[11px] text-brand-text-light text-center mt-1.5 leading-relaxed max-w-[250px]">
+                  Como analisar a temperatura real medindo a nuca ou o peito do bebê de forma tranquila, sem precisar acordar ou assustar o pequeno.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+
+        {/* =========================================================================
             SEÇÃO 5 — OFERTA (PREMIUM SALES CLOSING CARD)
             ========================================================================= */}
-        <section id="offer-section" className="py-20 sm:py-28 bg-[#F8F4EE]/50 border-b border-[#F2EEE7]">
+        <section id="offer-section" className="py-20 sm:py-28 bg-soft-cream border-b border-[#F2EEE7]">
           <div className="max-w-4xl mx-auto px-5 text-center">
             
             <div className="max-w-2xl mx-auto space-y-4">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#BFC8B2]/30 text-emerald-800 text-xs font-bold tracking-tight font-display">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-peach-baby/25 text-brand-text text-xs font-bold tracking-tight font-display border border-peach-baby/40">
                 💡 Tranquilidade Hipoalergênica
               </span>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#5F5A55]">
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-brand-text">
                 Um cuidado que você vai usar todos os dias.
               </h2>
-              <p className="text-[#5F5A55]/85 text-base sm:text-lg leading-relaxed max-w-xl mx-auto">
+              <p className="text-brand-text-light text-base sm:text-lg leading-relaxed max-w-xl mx-auto">
                 Por menos que o valor de uma única roupinha comum de bebê, você terá uma ferramenta inteligente no celular para ajudar em todas as decisões de vestir do dia a dia.
               </p>
             </div>
 
             {/* Complete premium Offer block (No infoproduct traditional countdown banners) */}
             <div className="bg-warm-white max-w-md mx-auto mt-12 rounded-[32px] border border-[#F2EEE7]/90 shadow-premium-lg overflow-hidden relative">
-              <div className="absolute top-0 inset-x-0 h-2 bg-peach-baby" />
+              <div className="absolute top-0 inset-x-0 h-2 bg-brand-primary" />
               
               <div className="p-8 sm:p-10 space-y-6">
                 
@@ -461,8 +504,8 @@ export default function App() {
                     'Garantia de 7 dias ou seu dinheiro de volta'
                   ].map((feat) => (
                     <div key={feat} className="flex items-center gap-3">
-                      <div className="w-5 h-5 rounded-full bg-[#BFC8B2]/20 flex items-center justify-center shrink-0">
-                        <Check className="w-3 h-3 text-emerald-800" />
+                      <div className="w-5 h-5 rounded-full bg-peach-baby/25 flex items-center justify-center shrink-0">
+                        <Check className="w-3 h-3 text-brand-primary" />
                       </div>
                       <span className="text-xs sm:text-sm font-semibold text-brand-text">{feat}</span>
                     </div>
@@ -473,7 +516,7 @@ export default function App() {
                 <div className="pt-2">
                   <button 
                     onClick={handleCheckoutRedirect}
-                    className="w-full py-4 px-6 rounded-2xl bg-[#BD5B3E] text-white text-base font-bold tracking-tight font-display hover:bg-[#A84A2E] shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-4 px-6 rounded-2xl bg-button-primary text-white text-base font-bold tracking-tight font-display hover:bg-[#4E4742] shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <ShoppingBag className="w-5 h-5 shrink-0" />
                     Comprar agora
@@ -508,7 +551,7 @@ export default function App() {
         {/* =========================================================================
             FAQ / DÚVIDAS COMUNS (ACCORDION SECTION ADDED TO BOOST CONVERSIONS)
             ========================================================================= */}
-        <section id="faq-section" className="py-16 sm:py-24 bg-warm-white border-b border-[#F2EEE7]">
+        <section id="faq-section" className="py-16 sm:py-24 bg-soft-cream border-b border-[#F2EEE7]">
           <div className="max-w-3xl mx-auto px-5">
             
             <div className="text-center max-w-md mx-auto mb-12">
@@ -543,11 +586,11 @@ export default function App() {
                 return (
                   <div 
                     key={index} 
-                    className="bg-soft-cream/20 rounded-2xl border border-[#F2EEE7] overflow-hidden transition-all duration-300"
+                    className="bg-warm-white rounded-2xl border border-[#F2EEE7] overflow-hidden transition-all duration-300"
                   >
                     <button
                       onClick={() => setFaqOpen(isOpen ? null : index)}
-                      className="w-full py-4.5 px-6 flex items-center justify-between text-left font-display font-semibold text-[#5F5A55] text-sm sm:text-base hover:bg-soft-cream/50 transition-colors cursor-pointer"
+                      className="w-full py-4.5 px-6 flex items-center justify-between text-left font-display font-semibold text-brand-text text-sm sm:text-base hover:bg-soft-cream/60 transition-colors cursor-pointer"
                     >
                       <span>{faq.q}</span>
                       <span className={`text-brand-text-light transition-transform duration-300 text-lg ${isOpen ? 'rotate-45' : 'rotate-0'}`}>
@@ -565,7 +608,7 @@ export default function App() {
                         >
                           <div className="px-6 pb-5 pt-1 text-xs sm:text-[13px] text-brand-text-light leading-relaxed border-t border-[#F2EEE7]/50">
                             {faq.a}
-                          </div>
+                           </div>
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -582,11 +625,11 @@ export default function App() {
       {/* =========================================================================
           RODAPÉ (CLEAN FOOTER ACCORDING TO METICULOUS GUIDELINES)
           ========================================================================= */}
-      <footer className="bg-[#F8F4EE] py-12 border-t border-[#F1EBE2]">
+      <footer className="bg-soft-cream py-12 border-t border-[#F1EBE2]">
         <div className="max-w-6xl mx-auto px-5 text-center space-y-6">
           
           <div className="flex flex-col items-center space-y-2">
-            <span className="font-display font-black text-xl text-[#5F5A55] flex items-center justify-center gap-1.5 ">
+            <span className="font-display font-black text-xl text-brand-text flex items-center justify-center gap-1.5 ">
               ClimaBaby 💛
             </span>
             <p className="text-xs text-brand-text-light max-w-sm">
@@ -595,7 +638,7 @@ export default function App() {
           </div>
 
           {/* Safe micro regulatory warnings & links */}
-          <div className="flex flex-wrap justify-center gap-6 text-xs font-semibold text-[#8E857C]">
+          <div className="flex flex-wrap justify-center gap-6 text-xs font-semibold text-brand-text-light">
             <button onClick={() => setActiveModal('support')} className="hover:text-brand-text transition-colors cursor-pointer flex items-center gap-1">
               <Mail className="w-3.5 h-3.5" /> Suporte
             </button>
@@ -633,13 +676,13 @@ export default function App() {
               <span className="text-sm">💛</span>
             </div>
             <div>
-              <p className="text-[11px] font-bold text-brand-textLeading leading-tight font-display">
+              <p className="text-[11px] font-bold text-brand-text leading-tight font-display">
                 {activeNotification.name} ({activeNotification.city})
               </p>
-              <p className="text-[10px] text-[#5F5A55]/85">
+              <p className="text-[10px] text-brand-text-light">
                 Acabou de adquirir o acesso vitalício
               </p>
-              <span className="text-[8px] text-[#8E857C] font-semibold uppercase tracking-wider block mt-0.5">
+              <span className="text-[8px] text-brand-text-light font-semibold uppercase tracking-wider block mt-0.5">
                 Há {activeNotification.time}
               </span>
             </div>
@@ -674,7 +717,7 @@ export default function App() {
               {/* Close Button line */}
               <button 
                 onClick={() => setActiveModal(null)}
-                className="absolute top-4 right-4 p-2 rounded-full hover:bg-[#F8F4EE] text-brand-text-light hover:text-brand-text transition-colors cursor-pointer"
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-soft-cream/60 text-brand-text-light hover:text-brand-text transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -683,7 +726,7 @@ export default function App() {
               {activeModal === 'support' && (
                 <div className="space-y-4 flex-1 overflow-y-auto pr-1">
                   <div className="flex items-center gap-3">
-                    <div className="p-2.5 bg-peach-baby/20 rounded-xl text-[#BD5B3E]">
+                    <div className="p-2.5 bg-peach-baby/20 rounded-xl text-brand-primary">
                       <Mail className="w-6 h-6" />
                     </div>
                     <h3 className="font-display font-bold text-xl text-brand-text">Central de Suporte</h3>
@@ -694,7 +737,7 @@ export default function App() {
                       Olá! Nós da equipe ClimaBaby estamos sempre prontos para te ajudar, seja com dúvidas técnicas sobre as recomendações ou ajuda com compras efetuadas.
                     </p>
                     
-                    <div className="bg-[#F8F4EE] p-4 rounded-xl border border-[#F2EEE7] space-y-3">
+                    <div className="bg-soft-cream p-4 rounded-xl border border-[#F2EEE7] space-y-3">
                       <div>
                         <span className="text-[10px] uppercase font-bold text-brand-text-light tracking-wide font-display">E-mail de Contato</span>
                         <p className="text-sm font-bold text-brand-text font-display">suporte@climababy.com.br</p>
@@ -745,7 +788,7 @@ export default function App() {
               {activeModal === 'terms' && (
                 <div className="space-y-4 flex-1 overflow-y-auto pr-1 scrollbar-thin">
                   <div className="flex items-center gap-3">
-                    <div className="p-2.5 bg-peach-baby/20 rounded-xl text-[#BD5B3E]">
+                    <div className="p-2.5 bg-peach-baby/20 rounded-xl text-brand-primary">
                       <Info className="w-6 h-6" />
                     </div>
                     <h3 className="font-display font-bold text-xl text-brand-text">Termos de Uso</h3>

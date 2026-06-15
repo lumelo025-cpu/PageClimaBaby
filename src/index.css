@@ -5,20 +5,25 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
 
-  --color-warm-white: #FFFDF9;
-  --color-soft-cream: #F8F4EE;
-  --color-peach-baby: #F4C7B8;
-  --color-sage-green: #BFC8B2;
-  --color-brand-text: #5F5A55;
-  --color-brand-text-light: #8E857C;
+  /* Estilos específicos conforme tabela de cores do usuário */
+  --color-warm-white: #FFFDFC;       /* Cards: #FFFDFC */
+  --color-soft-cream: #F7F4EF;       /* Fundo geral: #F7F4EF */
+  --color-peach-baby: #EAD1C4;       /* Destaques suaves: #EAD1C4 */
+  --color-brand-primary: #D89A85;    /* Cor da marca: #D89A85 */
+  --color-button-primary: #5E5650;   /* Botão principal: #5E5650 */
+  --color-brand-text: #5E5650;       /* Títulos: #5E5650 */
+  --color-brand-text-light: #7E756E;  /* Texto comum: #7E756E */
+  --color-affective: #F2C55C;        /* Detalhes afetivos: #F2C55C */
 
-  --shadow-premium: 0 10px 30px -10px rgba(95, 90, 85, 0.08), 0 1px 3px rgba(95, 90, 85, 0.03);
-  --shadow-premium-lg: 0 20px 50px -12px rgba(95, 90, 85, 0.12), 0 2px 8px rgba(95, 90, 85, 0.04);
+  --color-sage-green: #BFC8B2;
+
+  --shadow-premium: 0 10px 30px -10px rgba(94, 86, 80, 0.08), 0 1px 3px rgba(94, 86, 80, 0.03);
+  --shadow-premium-lg: 0 20px 50px -12px rgba(94, 86, 80, 0.12), 0 2px 8px rgba(94, 86, 80, 0.04);
 }
 
 body {
-  background-color: var(--color-warm-white);
-  color: var(--color-brand-text);
+  background-color: var(--color-soft-cream);
+  color: var(--color-brand-text-light);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
