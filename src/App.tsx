@@ -131,8 +131,11 @@ export default function App() {
               <img 
                 src="https://site.maecompleta.com/wp-content/uploads/2026/06/Captura-de-tela-2026-06-14-222055.png" 
                 alt="ClimaBaby App Banner de Boas-vindas" 
-                className="w-full h-auto object-cover max-h-[640px] sm:max-h-none"
+                className="w-full h-auto object-cover max-h-[640px] sm:max-h-none select-none transition-transform duration-300 hover:scale-[1.005]"
                 referrerPolicy="no-referrer"
+                loading="eager"
+                decoding="sync"
+                style={{ imageRendering: '-webkit-optimize-contrast' }}
               />
             </div>
           </div>
@@ -222,8 +225,11 @@ export default function App() {
               <img 
                 src="https://site.maecompleta.com/wp-content/uploads/2026/06/Captura-de-tela-2026-06-14-223257.png" 
                 alt="ClimaBaby App Instruções Detalhadas" 
-                className="w-full h-auto object-cover rounded-[16px]"
+                className="w-full h-auto object-cover rounded-[16px] transition-transform duration-300 hover:scale-[1.005]"
                 referrerPolicy="no-referrer"
+                loading="lazy"
+                decoding="async"
+                style={{ imageRendering: '-webkit-optimize-contrast' }}
               />
             </div>
 
@@ -256,8 +262,11 @@ export default function App() {
               <img 
                 src="https://site.maecompleta.com/wp-content/uploads/2026/06/Captura-de-tela-2026-06-14-223959.png" 
                 alt="O resultado detalhado fornecido pelo ClimaBaby" 
-                className="w-full h-auto object-cover max-h-[720px] sm:max-h-none"
+                className="w-full h-auto object-cover max-h-[720px] sm:max-h-none transition-transform duration-300 hover:scale-[1.005]"
                 referrerPolicy="no-referrer"
+                loading="lazy"
+                decoding="async"
+                style={{ imageRendering: '-webkit-optimize-contrast' }}
               />
             </div>
           </div>
@@ -285,6 +294,9 @@ export default function App() {
                     alt="Peças de Roupa Recomendadas ClimaBaby"
                     className="w-full h-full object-cover select-none pointer-events-none"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
+                    decoding="async"
+                    style={{ imageRendering: '-webkit-optimize-contrast' }}
                   />
                 </div>
               </div>
@@ -424,6 +436,9 @@ export default function App() {
                       alt="Diretrizes de Vestuário ClimaBaby"
                       className="w-full h-full object-cover select-none pointer-events-none"
                       referrerPolicy="no-referrer"
+                      loading="lazy"
+                      decoding="async"
+                      style={{ imageRendering: '-webkit-optimize-contrast' }}
                     />
                   </div>
                 </div>
@@ -446,6 +461,9 @@ export default function App() {
                       alt="Sono Seguro no ClimaBaby"
                       className="w-full h-full object-cover select-none pointer-events-none"
                       referrerPolicy="no-referrer"
+                      loading="lazy"
+                      decoding="async"
+                      style={{ imageRendering: '-webkit-optimize-contrast' }}
                     />
                   </div>
                 </div>
