@@ -47,8 +47,23 @@ export default function App() {
 
   // Kiwify Checkout Redirect Simulation or Integration
   const handleCheckoutRedirect = () => {
+    // Fire Meta / Facebook Pixel InitiateCheckout custom event safely
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      try {
+        (window as any).fbq('track', 'InitiateCheckout', {
+          value: 29.90,
+          currency: 'BRL',
+          content_name: 'ClimaBaby ACESSO VITALÍCIO',
+          content_category: 'Maternidade',
+          content_ids: ['climababych01'],
+          content_type: 'product'
+        });
+      } catch (e) {
+        console.error('Error tracking pixel event:', e);
+      }
+    }
     // Standard secure redirect to Kiwify checkout placeholder or real link
-    window.open('https://pay.kiwify.com.br/', '_blank');
+    window.open('https://pay.kiwify.com.br/n9buLYP', '_blank');
   };
 
   // Simulate premium user notifications to boost social proof (subtle & elegant)
@@ -189,30 +204,68 @@ export default function App() {
         <section id="funcionamento-section" className="py-16 sm:py-24 bg-soft-cream border-b border-[#F2EEE7]">
           <div className="max-w-6xl mx-auto px-5 mb-12">
             
-            <div className="text-center max-w-xl mx-auto space-y-3">
+            <div className="text-center max-w-2xl mx-auto space-y-3">
               <span className="text-xs font-bold uppercase tracking-wider text-brand-primary font-display bg-peach-baby/25 px-2.5 py-1 rounded-full">Como funciona</span>
               <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight mt-1.5 text-brand-text leading-tight">
                 Em menos de 30 segundos você descobre a roupa ideal
               </h2>
-              <p className="text-brand-text-light text-sm mt-3 leading-relaxed">
-                É simples: você responde algumas perguntas e o ClimaBaby faz uma recomendação personalizada.
+              <p className="text-brand-text-light text-sm sm:text-base mt-3 leading-relaxed max-w-lg mx-auto">
+                É simples: responda algumas perguntas e o ClimaBaby cria uma recomendação personalizada para o seu bebê.
               </p>
             </div>
           </div>
 
-          {/* Imagem recomendada em tela cheia neste bloco */}
-          <div className="max-w-7xl mx-auto px-0 sm:px-5">
-            <div className="relative w-full overflow-hidden sm:rounded-[32px] border-b sm:border border-[#F2EEE7] bg-warm-white shadow-sm sm:shadow-premium select-none">
-              <img 
-                src="https://site.maecompleta.com/wp-content/uploads/2026/06/Captura-de-tela-2026-06-14-223257.png" 
-                alt="ClimaBaby App Instruções Detalhadas" 
-                className="w-full h-auto object-cover max-h-[720px] sm:max-h-none transition-transform duration-300 hover:scale-[1.005]"
-                referrerPolicy="no-referrer"
-                loading="lazy"
-                decoding="async"
-                style={{ imageRendering: '-webkit-optimize-contrast' }}
-              />
-            </div>
+          {/* Cards verticais inovadores, otimizados para mobile */}
+          <div className="max-w-xl mx-auto px-5 mt-6 space-y-6 relative">
+            
+            {/* Linha de conexão elegante entre as etapas */}
+            <div className="absolute left-[44px] sm:left-[52px] top-10 bottom-10 w-[2px] bg-gradient-to-b from-brand-primary/20 via-peach-baby-light/40 to-[#F2EEE7] hidden xs:block" />
+
+            {[
+              {
+                icon: "🌡️",
+                title: "Como está o ambiente?",
+                text: "Informe como está a temperatura do local onde o bebê está."
+              },
+              {
+                icon: "👶",
+                title: "Qual é o momento do bebê?",
+                text: "Diga se ele está acordado, no colo, brincando ou vai dormir."
+              },
+              {
+                icon: "🏠",
+                title: "O ambiente tem algum ajuste?",
+                text: "Considere fatores como ar-condicionado, vento ou ambiente fechado."
+              },
+              {
+                icon: "💛",
+                title: "Receba sua recomendação personalizada",
+                text: "Veja a combinação de roupas ideal, camadas, tecidos e orientações de conforto."
+              }
+            ].map((step, idx) => (
+              <div 
+                key={idx}
+                className="relative bg-warm-white p-5 sm:p-6 rounded-[24px] border border-[#F2EEE7] shadow-[0_4px_20px_-4px_rgba(238,228,214,0.3)] hover:shadow-premium transition-all duration-300 flex items-start gap-4 sm:gap-5 group hover:border-brand-primary/30"
+              >
+                {/* Círculo do ícone delicado com borda sutil */}
+                <div className="relative z-10 w-12 h-12 rounded-2xl bg-soft-cream flex items-center justify-center text-2xl shrink-0 shadow-sm border border-[#F2EEE7]/60 ring-4 ring-[#F8F5F0] transition-colors group-hover:bg-peach-baby/20">
+                  {step.icon}
+                </div>
+
+                {/* Conteúdo do texto */}
+                <div className="space-y-1 pt-0.5">
+                  <span className="text-[10px] font-extrabold text-brand-primary uppercase tracking-widest font-display block opacity-85">
+                    Passo 0{idx + 1}
+                  </span>
+                  <h3 className="font-display font-extrabold text-[#2F2722] text-sm sm:text-base leading-snug group-hover:text-brand-primary transition-colors">
+                    {step.title}
+                  </h3>
+                  <p className="text-[12px] sm:text-[13px] text-brand-text-light leading-relaxed font-medium">
+                    {step.text}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -259,18 +312,66 @@ export default function App() {
           </div>
 
           {/* Imagem do resultado entregue em tela cheia neste bloco */}
-          <div className="max-w-7xl mx-auto px-0 sm:px-5">
-            <div className="relative w-full overflow-hidden sm:rounded-[32px] border-b sm:border border-[#F2EEE7] bg-warm-white shadow-sm sm:shadow-premium select-none">
-              <img 
-                src="https://site.maecompleta.com/wp-content/uploads/2026/06/Captura-de-tela-2026-06-14-230041.png" 
-                alt="O resultado detalhado fornecido pelo ClimaBaby" 
-                className="w-full h-auto object-cover max-h-[720px] sm:max-h-none transition-transform duration-300 hover:scale-[1.005]"
-                referrerPolicy="no-referrer"
-                loading="lazy"
-                decoding="async"
-                style={{ imageRendering: '-webkit-optimize-contrast' }}
-              />
+          <div className="max-w-6xl mx-auto px-5 sm:px-8 py-10 relative overflow-visible">
+            
+            {/* Background Stage Halos/Efeitos Luminosos para dar profundidade de 3D */}
+            <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-72 h-72 rounded-full bg-peach-baby/20 blur-3xl opacity-60 pointer-events-none select-none" />
+            <div className="absolute top-1/3 right-1/4 -translate-y-1/2 translate-x-1/2 w-80 h-80 rounded-full bg-sage-green/10 blur-3xl opacity-50 pointer-events-none select-none" />
+
+            {/* Floating Playful 3D-like badges / icones decorativos ao redor (Desktop only for UX simplicity) */}
+            <div className="absolute left-2 xl:left-4 top-1/4 -translate-y-1/2 hidden lg:flex items-center gap-3 bg-white/90 backdrop-blur-md px-4 py-3 rounded-2xl border border-peach-baby/40 shadow-premium-md animate-bounce [animation-duration:6s] z-20">
+              <span className="text-xl">✨</span>
+              <div>
+                <p className="text-[11px] font-extrabold text-brand-text uppercase tracking-wider font-display">Sem Dúvidas</p>
+                <p className="text-[10px] text-brand-text-light font-medium">Recomendação Clara</p>
+              </div>
             </div>
+
+            <div className="absolute right-2 xl:right-4 top-12 hidden lg:flex items-center gap-3 bg-white/90 backdrop-blur-md px-4 py-3 rounded-2xl border border-[#F2EEE7] shadow-premium-md animate-bounce [animation-duration:5s] z-20">
+              <span className="text-xl">🌙</span>
+              <div>
+                <p className="text-[11px] font-extrabold text-brand-text uppercase tracking-wider font-display">Sono Seguro</p>
+                <p className="text-[10px] text-brand-text-light font-medium">Noite Tranquila</p>
+              </div>
+            </div>
+
+            <div className="absolute right-12 bottom-12 hidden lg:flex items-center gap-3 bg-white/90 backdrop-blur-md px-4 py-3 rounded-2xl border border-peach-baby/40 shadow-premium-md animate-bounce [animation-duration:7s] z-20 font-display">
+              <span className="text-xl">🧸</span>
+              <div>
+                <p className="text-[11px] font-extrabold text-brand-primary uppercase tracking-wider">Multi-Camadas</p>
+                <p className="text-[10px] text-brand-text-light font-medium">Fácil de Vestir</p>
+              </div>
+            </div>
+
+            {/* Little floating stars / items to look playful (lúdico) */}
+            <div className="absolute left-1/4 top-4 hidden md:block text-2xl animate-pulse opacity-60 select-none">⭐</div>
+            <div className="absolute right-1/4 bottom-4 hidden md:block text-2xl animate-pulse delay-75 opacity-60 select-none">☁️</div>
+            <div className="absolute left-12 bottom-16 hidden md:block text-xl animate-pulse delay-150 opacity-40 select-none">👶</div>
+
+            {/* 3D Perspective Canvas Container */}
+            <div className="w-full flex justify-center [perspective:1200px]">
+              <div className="relative w-full max-w-5xl rounded-[24px] sm:rounded-[40px] p-2 sm:p-4 bg-gradient-to-tr from-[#F2EEE7]/85 via-warm-white to-peach-baby/30 border border-[#F2EEE7] shadow-[0_20px_50px_rgba(47,39,34,0.12)] select-none overflow-hidden transition-all duration-700 ease-out group hover:shadow-[0_30px_60px_rgba(47,39,34,0.18)] sm:[transform:rotateX(2.5deg)_rotateY(-1.5deg)] sm:hover:[transform:rotateX(0deg)_rotateY(0deg)] transform-gpu">
+                
+                {/* Accent glow on top header of the element */}
+                <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-brand-primary/40 to-transparent opacity-80" />
+                
+                <div className="relative overflow-hidden rounded-[18px] sm:rounded-[30px] border border-stone-200 shadow-inner bg-soft-cream">
+                  <img 
+                    src="https://site.maecompleta.com/wp-content/uploads/2026/06/Captura-de-tela-2026-06-14-230041.png" 
+                    alt="O resultado detalhado fornecido pelo ClimaBaby" 
+                    className="w-full h-auto object-cover max-h-[720px] transition-transform duration-700 ease-out group-hover:scale-[1.01]"
+                    referrerPolicy="no-referrer"
+                    loading="lazy"
+                    decoding="async"
+                    style={{ imageRendering: '-webkit-optimize-contrast' }}
+                  />
+                  
+                  {/* Subtle gloss overlay to make it look super premium and clean like glass */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/15 pointer-events-none" />
+                </div>
+              </div>
+            </div>
+
           </div>
         </section>
 
@@ -306,7 +407,7 @@ export default function App() {
 
             <div className="text-left space-y-4">
               <span className="text-[10px] font-extrabold text-brand-primary uppercase tracking-wider font-display bg-peach-baby/25 px-2.5 py-1 rounded-full border border-peach-baby/40 inline-block">
-                Imagens das roupinhas para simplificar a identificação
+                Veja na tela as peças sugeridas
               </span>
               <h3 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-brand-text leading-tight">
                 Você vê exatamente o que vestir
@@ -422,66 +523,102 @@ export default function App() {
               </p>
             </div>
 
-            {/* Complete premium Offer block (No infoproduct traditional countdown banners) */}
-            <div className="bg-warm-white max-w-md mx-auto mt-12 rounded-[32px] border border-[#F2EEE7]/90 shadow-premium-lg overflow-hidden relative">
-              <div className="absolute top-0 inset-x-0 h-2 bg-brand-primary" />
+            {/* Complete premium Offer block with gorgeous modern presentation */}
+            <div className="relative max-w-md mx-auto mt-16 group">
               
-              <div className="p-8 sm:p-10 space-y-6">
-                
-                <div className="space-y-1">
-                  <h3 className="text-sm sm:text-base font-extrabold text-brand-text uppercase tracking-wide font-display">
-                    Tenha o ClimaBaby para sempre
-                  </h3>
-                  <div className="text-center py-2 flex items-baseline justify-center gap-2">
-                    <span className="text-xs font-bold text-brand-text-light font-display">Apenas</span>
-                    <span className="text-sm font-semibold text-brand-text pb-2 font-display">R$</span>
-                    <span className="text-5xl font-black text-brand-text tracking-tight font-display">29,90</span>
-                  </div>
-                  <p className="text-[11px] sm:text-xs text-brand-text-light font-medium">Um único pagamento. Sem mensalidades.</p>
+              {/* Floating badges on large screens to increase conversion (social proof, safety) */}
+              <div className="absolute -left-20 xl:-left-28 bottom-24 hidden lg:flex items-center gap-3 bg-[#FFFDFC]/95 backdrop-blur-md p-4 rounded-2xl border border-peach-baby/40 shadow-[0_10px_30px_rgba(94,86,80,0.06)] z-25 w-48 text-left animate-bounce [animation-duration:8s] select-none">
+                <div className="w-9 h-9 rounded-xl bg-peach-baby/20 flex items-center justify-center text-lg">👩‍👦</div>
+                <div>
+                  <p className="text-[10px] font-extrabold text-[#2F2722] uppercase tracking-wider font-display">Mais de 1.800</p>
+                  <p className="text-[10px] text-brand-text-light font-medium leading-tight">mães prevenidas já usam e aprovam</p>
                 </div>
-
-                <div className="border-t border-[#F2EEE7] pt-6 space-y-3.5 text-left">
-                  {[
-                    'Acesso imediato no celular',
-                    'Calculadora inteligente de roupas',
-                    'Recomendações personalizadas para o dia e a noite',
-                    'Orientações de conforto e sono seguro',
-                    'Atualizações futuras gratuitas',
-                    'Garantia de 7 dias ou seu dinheiro de volta'
-                  ].map((feat) => (
-                    <div key={feat} className="flex items-center gap-3">
-                      <div className="w-5 h-5 rounded-full bg-peach-baby/25 flex items-center justify-center shrink-0">
-                        <Check className="w-3 h-3 text-brand-primary" />
-                      </div>
-                      <span className="text-xs sm:text-[13px] font-semibold text-brand-text">{feat}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Secure buying button linking to Kiwify with custom styled redirection */}
-                <div className="pt-2">
-                  <button 
-                    onClick={handleCheckoutRedirect}
-                    className="w-full py-4 px-6 rounded-2xl bg-button-primary text-white text-base font-bold tracking-tight font-display hover:bg-[#4E4742] shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer"
-                  >
-                    <ShoppingBag className="w-5 h-5 shrink-0" />
-                    Comprar agora
-                  </button>
-                  
-                  <div className="mt-4 flex items-center justify-center gap-4 text-[10px] text-brand-text-light font-medium">
-                    <span className="flex items-center gap-1">
-                      <Lock className="w-3.5 h-3.5 text-emerald-700" /> Compra segura
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" /> Kiwify Garantido
-                    </span>
-                  </div>
-                </div>
-
               </div>
               
-              <div className="bg-soft-cream/60 py-3.5 px-6 border-t border-[#F2EEE7] flex items-center justify-center gap-1.5 text-xs text-brand-text/80">
-                <span>⏱️ Acesso imediato enviado no seu e-mail após a compra.</span>
+              <div className="absolute -right-20 xl:-right-28 top-16 hidden lg:flex items-center gap-3 bg-[#FFFDFC]/95 backdrop-blur-md p-4 rounded-2xl border border-peach-baby/40 shadow-[0_10px_30px_rgba(94,86,80,0.06)] z-25 w-48 text-left animate-bounce [animation-duration:7s] select-none">
+                <div className="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center text-lg">🔒</div>
+                <div>
+                  <p className="text-[10px] font-extrabold text-emerald-800 uppercase tracking-wider font-display">Compra Segura</p>
+                  <p className="text-[10px] text-brand-text-light font-medium leading-tight">Ambiente criptografado e 100% livre de riscos</p>
+                </div>
+              </div>
+
+              {/* Floating Special Offer Badge overlapping the card's top edge */}
+              <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20 bg-gradient-to-r from-[#FF7A45] to-[#FF551D] text-white text-[11px] font-extrabold uppercase tracking-widest px-6 py-2.5 rounded-full shadow-[0_8px_24px_rgba(255,107,53,0.35)] flex items-center gap-1.5 whitespace-nowrap select-none animate-pulse">
+                <Sparkles className="w-3.5 h-3.5 fill-white shrink-0" />
+                <span>Oferta Especial de Lançamento</span>
+              </div>
+
+              {/* Behind/Under card decorative glow effect */}
+              <div className="absolute inset-x-4 -inset-y-2 bg-gradient-to-tr from-peach-baby/20 via-brand-primary/10 to-orange-500/10 rounded-[36px] blur-2xl opacity-75 -z-10 group-hover:scale-105 transition-transform duration-500" />
+
+              {/* Main Premium Cards container */}
+              <div className="bg-warm-white rounded-[32px] border border-[#F2EEE7]/90 shadow-[0_20px_50px_rgba(94,86,80,0.12)] hover:shadow-[0_25px_60px_rgba(94,86,80,0.16)] transition-all duration-500 overflow-hidden relative transform group-hover:translate-y-[-2px]">
+                <div className="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-brand-primary via-[#FF7A45] to-brand-primary" />
+                
+                <div className="p-8 sm:p-10 space-y-6">
+                  
+                  <div className="space-y-2 pt-2">
+                    <h3 className="text-xs sm:text-sm font-extrabold text-[#7E756E] uppercase tracking-widest font-display">
+                      Acesso Vitalício Imediato
+                    </h3>
+                    <div className="relative inline-block max-w-full">
+                      {/* Floating mini badge for price discount */}
+                      <span className="absolute -top-3 -right-6 rotate-12 bg-emerald-600 text-[9px] font-extrabold text-white px-2 py-0.5 rounded-full shadow-sm">
+                        ÚNICO
+                      </span>
+                      <div className="text-center py-2 flex items-baseline justify-center gap-2">
+                        <span className="text-xs font-bold text-brand-text-light font-display">Por</span>
+                        <span className="text-sm font-semibold text-[#2F2722] pb-1 font-display">R$</span>
+                        <span className="text-5xl sm:text-6xl font-black text-[#2F2722] tracking-tight font-display">29,90</span>
+                      </div>
+                    </div>
+                    <p className="text-[11px] sm:text-xs text-brand-text-light font-medium">Sem mensalidades ou surpresas futuras.</p>
+                  </div>
+
+                  <div className="border-t border-[#F2EEE7] pt-6 space-y-4 text-left">
+                    {[
+                      'Acesso instantâneo e vitalício no celular',
+                      'Calculadora inteligente baseada em ciência térmica',
+                      'Recomendações customizadas para noite e dia',
+                      'Orientações extras sobre tecidos e calçados',
+                      'Dicas essenciais de sono seguro e conforto',
+                      'Garantia incondicional de 7 dias inclusa'
+                    ].map((feat) => (
+                      <div key={feat} className="flex items-center gap-3">
+                        <div className="w-5 h-5 rounded-full bg-peach-baby/25 flex items-center justify-center shrink-0">
+                          <Check className="w-3 h-3 text-brand-primary" />
+                        </div>
+                        <span className="text-xs sm:text-[13px] font-semibold text-[#5E5650]">{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Stunning high converting bright orange button redirecting with nice design */}
+                  <div className="pt-2">
+                    <button 
+                      onClick={handleCheckoutRedirect}
+                      className="w-full py-4.5 px-6 rounded-2xl bg-gradient-to-r from-[#FF7A45] via-[#FF6036] to-[#E24A18] text-white text-base font-extrabold tracking-wide font-display shadow-[0_12px_28px_rgba(255,107,53,0.35)] hover:shadow-[0_16px_36px_rgba(255,107,53,0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2.5 cursor-pointer"
+                    >
+                      <ShoppingBag className="w-5 h-5 shrink-0 animate-pulse" />
+                      QUERO GARANTIR O CLIMABABY
+                    </button>
+                    
+                    <div className="mt-4 flex items-center justify-center gap-4 text-[10px] text-[#7E756E] font-medium">
+                      <span className="flex items-center gap-1.5">
+                        <Lock className="w-3.5 h-3.5 text-emerald-700" /> Compra segura
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" /> Kiwify Garantido
+                      </span>
+                    </div>
+                  </div>
+
+                </div>
+                
+                <div className="bg-soft-cream/60 py-4 px-6 border-t border-[#F2EEE7] flex items-center justify-center gap-1.5 text-xs text-brand-text/80 font-medium">
+                  <span>⏱️ Acesso imediato enviado no seu e-mail após a compra.</span>
+                </div>
               </div>
             </div>
 
