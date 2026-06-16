@@ -195,28 +195,29 @@ export default function App() {
             SEÇÃO 3 — COMO FUNCIONA (SMEAR & CLEAN STEP-BY-STEP PROCESS)
             ========================================================================= */}
         <section id="funcionamento-section" className="py-16 sm:py-24 bg-soft-cream border-b border-[#F2EEE7]">
-          <div className="max-w-6xl mx-auto px-5">
+          <div className="max-w-6xl mx-auto px-5 mb-12">
             
-            <div className="text-center max-w-xl mx-auto mb-16">
+            <div className="text-center max-w-xl mx-auto">
               <span className="text-xs font-bold uppercase tracking-wider text-brand-primary font-display">Simplicidade Científica</span>
               <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight mt-1.5 text-brand-text">
                 Como funciona o ClimaBaby
               </h2>
             </div>
+          </div>
 
-            {/* Imagem recomendada inserida abaixo do Guia Técnico Inteligente */}
-            <div className="mt-8 max-w-3xl mx-auto overflow-hidden rounded-[24px] border border-[#F2EEE7] bg-warm-white p-2.5 shadow-sm sm:shadow-premium select-none">
+          {/* Imagem recomendada em tela cheia neste bloco */}
+          <div className="max-w-7xl mx-auto px-0 sm:px-5">
+            <div className="relative w-full overflow-hidden sm:rounded-[32px] border-b sm:border border-[#F2EEE7] bg-warm-white shadow-sm sm:shadow-premium select-none">
               <img 
                 src="https://site.maecompleta.com/wp-content/uploads/2026/06/Captura-de-tela-2026-06-14-223257.png" 
                 alt="ClimaBaby App Instruções Detalhadas" 
-                className="w-full h-auto object-cover rounded-[16px] transition-transform duration-300 hover:scale-[1.005]"
+                className="w-full h-auto object-cover max-h-[720px] sm:max-h-none transition-transform duration-300 hover:scale-[1.005]"
                 referrerPolicy="no-referrer"
                 loading="lazy"
                 decoding="async"
                 style={{ imageRendering: '-webkit-optimize-contrast' }}
               />
             </div>
-
           </div>
         </section>
 
