@@ -204,22 +204,6 @@ export default function App() {
               </h2>
             </div>
 
-            {/* Quick check details in list underneath works */}
-            <div className="mt-12 bg-soft-cream p-5 rounded-2xl border border-[#F2EEE7] max-w-3xl mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-              <span className="text-xs font-semibold text-brand-text flex items-center gap-1.5 font-display">
-                <Info className="w-4 h-4 text-brand-primary shrink-0" />
-                Guia Técnico Inteligente
-              </span>
-              <div className="flex flex-wrap gap-x-6 gap-y-2">
-                {['Combinação de roupas', 'Método das camadas', 'Tecidos recomendados', 'Orientações de sono seguro'].map((item) => (
-                  <span key={item} className="text-xs text-brand-text-light flex items-center gap-1.5 font-medium">
-                    <Check className="w-3.5 h-3.5 text-sage-green bg-sage-green/20 rounded-full p-0.5 shrink-0" />
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-
             {/* Imagem recomendada inserida abaixo do Guia Técnico Inteligente */}
             <div className="mt-8 max-w-3xl mx-auto overflow-hidden rounded-[24px] border border-[#F2EEE7] bg-warm-white p-2.5 shadow-sm sm:shadow-premium select-none">
               <img 
@@ -254,6 +238,23 @@ export default function App() {
                 Uma recomendação detalhada, fácil de entender e personalizada para o conforto térmico exato que seu bebê precisa.
               </p>
             </div>
+
+            {/* Quick check details in list underneath works - Moved Here */}
+            <div className="mt-12 bg-soft-cream p-5 rounded-2xl border border-[#F2EEE7] max-w-3xl mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              <span className="text-xs font-semibold text-brand-text flex items-center gap-1.5 font-display">
+                <Info className="w-4 h-4 text-brand-primary shrink-0" />
+                Guia Técnico Inteligente
+              </span>
+              <div className="flex flex-wrap gap-x-6 gap-y-2">
+                {['Combinação de roupas', 'Método das camadas', 'Tecidos recomendados', 'Orientações de sono seguro'].map((item) => (
+                  <span key={item} className="text-xs text-brand-text-light flex items-center gap-1.5 font-medium">
+                    <Check className="w-3.5 h-3.5 text-sage-green bg-sage-green/20 rounded-full p-0.5 shrink-0" />
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
           </div>
 
           {/* Imagem do resultado entregue em tela cheia neste bloco */}
@@ -304,19 +305,19 @@ export default function App() {
 
             <div className="text-left space-y-4">
               <span className="text-[10px] font-extrabold text-brand-primary uppercase tracking-wider font-display bg-peach-baby/25 px-2.5 py-1 rounded-full border border-peach-baby/40">
-                Visualização Realista
+                Imagens das roupinhas para simplificar a identificação
               </span>
               <h3 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-brand-text leading-tight">
-                Entenda exatamente cada peça sugerida
+                Veja a roupa ideal na prática
               </h3>
               <p className="text-brand-text-light text-[13px] leading-relaxed">
-                Esqueça termos confusos ou subjetivos sobre empilhamento térmico. O ClimaBaby apresenta as fotos explícitas do tipo de roupa recomendado para o momento atual (como o clássico body de manga curta, mijãozinho de malha ou calça culote adequada), permitindo que você visualize a anatomia e as características de cada peça logo de cara.
+                O ClimaBaby não apenas fala o que usar. Ele mostra exatamente quais peças vestir, com imagens claras e orientações simples para você acertar na combinação.
               </p>
               <div className="space-y-3 pt-2">
                 {[
-                  'Fotografias claras das partes e itens recomendados',
-                  'Indicação do nível protetivo das fibras (Camada Base, Intermediária ou Blindagem)',
-                  'Símbolos de aquecimento e leveza projetados de forma compreensiva'
+                  'Body, calça, macacão e saco de dormir ilustrados',
+                  'Método de camadas fácil de entender',
+                  'Orientações de conforto e proteção para cada clima'
                 ].map((item, id) => (
                   <div key={id} className="flex items-start gap-2.5">
                     <Check className="w-3.5 h-3.5 text-sage-green bg-sage-green/20 rounded-full p-0.5 mt-0.5 shrink-0" />
@@ -339,13 +340,13 @@ export default function App() {
         <section id="diferenciais-section" className="py-16 sm:py-24 bg-soft-cream border-b border-[#F2EEE7]">
           <div className="max-w-6xl mx-auto px-5">
             
-            <div className="text-center max-w-md mx-auto mb-16">
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-primary font-display font-semibold">Detalhamento Premium</span>
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <span className="text-xs font-bold uppercase tracking-wider text-brand-primary font-display font-semibold">Diferenciais</span>
               <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight mt-1.5 text-brand-text">
-                O Diferencial ClimaBaby
+                O que torna o ClimaBaby diferente?
               </h2>
-              <p className="text-brand-text-light text-sm mt-1.5">
-                Rigorosamente baseado nas melhores recomendações e metodologias internacionais de cuidados neonatais.
+              <p className="text-brand-text-light text-sm mt-3 leading-relaxed">
+                Criado para ajudar mães e pais a vestirem o bebê com mais segurança e tranquilidade, o ClimaBaby analisa fatores que realmente fazem diferença no conforto térmico do seu pequeno.
               </p>
             </div>
 
@@ -356,9 +357,9 @@ export default function App() {
               <div className="bg-warm-white p-6 sm:p-8 rounded-3xl border border-[#F2EEE7] shadow-sm flex gap-4 hover:translate-y-[-2px] transition-all">
                 <span className="text-3xl shrink-0">🌡️</span>
                 <div>
-                  <h3 className="font-display font-semibold text-brand-text text-base sm:text-lg">Considera o ambiente real</h3>
+                  <h3 className="font-display font-semibold text-brand-text text-base sm:text-lg">Considera o ambiente de verdade</h3>
                   <p className="text-xs sm:text-[13px] text-brand-text-light mt-1.5 leading-relaxed">
-                    Vai além da temperatura geral da cidade trazida pelo clima geral. Permite que você declare se o quarto tem Ar Condicionado, se há correntes de ar ou brisas frias, recalculando a camada de manga automaticamente para resguardar a saúde do bebê.
+                    Não basta olhar a temperatura da cidade. O ClimaBaby leva em conta como está o ambiente onde o bebê está, considerando fatores como quarto fechado, ar-condicionado, vento ou correntes de ar para uma recomendação muito mais personalizada.
                   </p>
                 </div>
               </div>
@@ -367,9 +368,9 @@ export default function App() {
               <div className="bg-warm-white p-6 sm:p-8 rounded-3xl border border-[#F2EEE7] shadow-sm flex gap-4 hover:translate-y-[-2px] transition-all">
                 <span className="text-3xl shrink-0">😴</span>
                 <div>
-                  <h3 className="font-display font-semibold text-brand-text text-base sm:text-lg">Analisa o momento do sono</h3>
+                  <h3 className="font-display font-semibold text-brand-text text-base sm:text-lg">Entende que dormir é diferente de estar acordado</h3>
                   <p className="text-xs sm:text-[13px] text-brand-text-light mt-1.5 leading-relaxed">
-                    A regulação térmica de um bebê dormindo desacelera drasticamente. O ClimaBaby sugere os TOGs corretos (Thermal Overall Grade) e indica o uso do Saco de Dormir apropriado, garantindo uma noite segura sem perigos de asfixias ou hipotermia.
+                    Durante o sono, o bebê fica mais parado e pode precisar de uma atenção diferente com as camadas. O ClimaBaby adapta a recomendação para cochilos e sono noturno, indicando combinações seguras de roupas e o uso adequado do saco de dormir quando necessário.
                   </p>
                 </div>
               </div>
@@ -378,9 +379,9 @@ export default function App() {
               <div className="bg-warm-white p-6 sm:p-8 rounded-3xl border border-[#F2EEE7] shadow-sm flex gap-4 hover:translate-y-[-2px] transition-all">
                 <span className="text-3xl shrink-0">🤱</span>
                 <div>
-                  <h3 className="font-display font-semibold text-brand-text text-base sm:text-lg">Entende colo, sling e rotina</h3>
+                  <h3 className="font-display font-semibold text-brand-text text-base sm:text-lg">Considera a rotina do seu bebê</h3>
                   <p className="text-xs sm:text-[13px] text-brand-text-light mt-1.5 leading-relaxed">
-                    Você sabia que carregar seu bebê no Sling acrescenta calor corporal considerável? O algoritmo inteligente remove instantaneamente uma camada protetora da conta caso o bebê esteja agasalhado no seu peito, prevenindo a brotoeja causada por superaquecimento.
+                    No colo ou no sling, o calor corporal do adulto pode aquecer o bebê naturalmente. O aplicativo ajusta as recomendações de acordo com cada momento do dia, ajudando a evitar tanto o frio quanto o excesso de roupas.
                   </p>
                 </div>
               </div>
@@ -389,9 +390,9 @@ export default function App() {
               <div className="bg-warm-white p-6 sm:p-8 rounded-3xl border border-[#F2EEE7] shadow-sm flex gap-4 hover:translate-y-[-2px] transition-all">
                 <span className="text-3xl shrink-0">🧸</span>
                 <div>
-                  <h3 className="font-display font-semibold text-brand-text text-base sm:text-lg">Descomplica tecidos e camadas</h3>
+                  <h3 className="font-display font-semibold text-brand-text text-base sm:text-lg">Ensina a vestir por camadas de forma simples</h3>
                   <p className="text-xs sm:text-[13px] text-brand-text-light mt-1.5 leading-relaxed">
-                    Nossa ferramenta detalha exatamente o que serve para que. Explica por que você deve dar preferência para fibras de algodão 100% Suedine em vez de malhas ásperas e como a calça culote ( mijãozinho ) funciona como escudo térmico suave de proteção à pele fina.
+                    Nada de dúvidas entre body, calça, macacão ou saco de dormir. O ClimaBaby mostra exatamente quais peças combinar, quais tecidos são mais indicados e ainda traz orientações de conforto e segurança para o dia a dia.
                   </p>
                 </div>
               </div>
@@ -402,81 +403,7 @@ export default function App() {
         </section>
 
 
-        {/* =========================================================================
-            QUADRO INSTANTÂNEO DE IMAGEM 3 — ORIENTAÇÃO CIENTÍFICA DOUBLE SHOWCASE (appclimababy4.png & appclimababy5.png)
-            ========================================================================= */}
-        <section className="py-16 sm:py-20 bg-soft-cream border-b border-[#F2EEE7]/85 overflow-hidden">
-          <div className="max-w-6xl mx-auto px-5 text-center">
-            
-            <div className="max-w-2xl mx-auto mb-12">
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-primary font-display bg-peach-baby/25 px-2.5 py-1 rounded-full">
-                Selo de Qualidade
-              </span>
-              <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight mt-3 text-brand-text">
-                Diretrizes fisiológicas e de tecidos ideais
-              </h2>
-              <p className="text-brand-text-light text-[13px] mt-2 max-w-lg mx-auto">
-                Mais do que listas frias de vestuário, o ClimaBaby entrega explicações minuciosas baseadas na sensibilidade térmica ideal de recém-nascidos.
-              </p>
-            </div>
 
-            {/* Side-by-side or stacked device layout for the remaining real screens */}
-            <div className="flex flex-col md:flex-row items-center justify-center gap-10 lg:gap-16 mt-6">
-              
-              {/* Device 1: Tissues and Comfort Updates (appclimababy4.png) */}
-              <div className="flex flex-col items-center max-w-sm group">
-                <div className="relative bg-[#1A1512] rounded-[36px] p-2.5 border-[3px] border-[#8E857C]/25 shadow-premium-lg mb-4 hover:border-brand-primary/40 hover:-translate-y-1 transition-all duration-300">
-                  <div className="absolute top-3.5 left-1/2 transform -translate-x-1/2 w-20 h-4.5 bg-black rounded-full z-20 flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 bg-stone-900 rounded-full mr-1.5" />
-                    <div className="w-8 h-0.5 bg-stone-900 rounded" />
-                  </div>
-                  <div className="rounded-[28px] overflow-hidden w-[220px] aspect-[9/19.5] bg-soft-cream flex items-center justify-center relative border border-slate-900/5">
-                    <img 
-                      src="https://site.maecompleta.com/wp-content/uploads/2026/06/appclimababy4.png" 
-                      alt="Diretrizes de Vestuário ClimaBaby"
-                      className="w-full h-full object-cover select-none pointer-events-none"
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                      decoding="async"
-                      style={{ imageRendering: '-webkit-optimize-contrast' }}
-                    />
-                  </div>
-                </div>
-                <h4 className="font-display font-extrabold text-brand-text text-sm">Tecidos Ideais e Conforto</h4>
-                <p className="text-[11px] text-brand-text-light text-center mt-1.5 leading-relaxed max-w-[250px]">
-                  Orientações sobre fibras naturais puras (Algodão Suedine vs Malha Canelada) para evitar brotoejas e alergias de pele.
-                </p>
-              </div>
-
-              {/* Device 2: Safe sleeping / Sleep signs (appclimababy5.png) */}
-              <div className="flex flex-col items-center max-w-sm group">
-                <div className="relative bg-[#1A1512] rounded-[36px] p-2.5 border-[3px] border-[#8E857C]/25 shadow-premium-lg mb-4 hover:border-brand-primary/40 hover:-translate-y-1 transition-all duration-300">
-                  <div className="absolute top-3.5 left-1/2 transform -translate-x-1/2 w-20 h-4.5 bg-black rounded-full z-20 flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 bg-stone-900 rounded-full mr-1.5" />
-                    <div className="w-8 h-0.5 bg-stone-900 rounded" />
-                  </div>
-                  <div className="rounded-[28px] overflow-hidden w-[220px] aspect-[9/19.5] bg-soft-cream flex items-center justify-center relative border border-slate-900/5">
-                    <img 
-                      src="https://site.maecompleta.com/wp-content/uploads/2026/06/appclimababy5.png" 
-                      alt="Sono Seguro no ClimaBaby"
-                      className="w-full h-full object-cover select-none pointer-events-none"
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                      decoding="async"
-                      style={{ imageRendering: '-webkit-optimize-contrast' }}
-                    />
-                  </div>
-                </div>
-                <h4 className="font-display font-extrabold text-brand-text text-sm">Sono Seguro e Sinais Reais</h4>
-                <p className="text-[11px] text-brand-text-light text-center mt-1.5 leading-relaxed max-w-[250px]">
-                  Como analisar a temperatura real medindo a nuca ou o peito do bebê de forma tranquila, sem precisar acordar ou assustar o pequeno.
-                </p>
-              </div>
-
-            </div>
-
-          </div>
-        </section>
 
 
         {/* =========================================================================
