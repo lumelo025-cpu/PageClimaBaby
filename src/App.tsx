@@ -144,45 +144,37 @@ export default function App() {
 
 
         <section id="dor-section" className="py-16 sm:py-24 bg-soft-cream border-b border-[#F2EEE7]">
-          <div className="max-w-4xl mx-auto px-5 text-center">
+          <div className="max-w-3xl mx-auto px-5 text-center">
             
-            <span className="text-xs font-bold uppercase tracking-wider text-brand-primary font-display">A Maternidade Real</span>
-            <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 text-brand-text">
-              Quantas vezes você já pensou...
+            <span className="text-xs font-bold uppercase tracking-wider text-brand-primary font-display bg-peach-baby/25 px-2.5 py-1 rounded-full">A Maternidade Real</span>
+            <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight mt-4 text-brand-text">
+              💛 A maternidade é feita de pequenas dúvidas
             </h2>
-            <p className="text-brand-text-light text-base mt-2 max-w-xl mx-auto">
-              Mesmo sob o melhor cuidado, a oscilação da temperatura traz inseguranças frequentes que tiram nossa paz.
+            <p className="text-brand-text-light text-base mt-4 max-w-2xl mx-auto leading-relaxed font-semibold">
+              Mesmo com todo amor e cuidado, uma pergunta aparece todos os dias:
             </p>
 
-            {/* Pain Cards - Beautifully subtle pastel colored queries */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
+            {/* Questions list styled beautifully */}
+            <div className="max-w-xl mx-auto mt-8 space-y-4">
               {[
-                { text: 'Será que meu bebê está com frio?', icon: '❄️', border: 'hover:border-blue-200' },
-                { text: 'Estou colocando roupa demais?', icon: '🔥', border: 'hover:border-orange-200' },
-                { text: 'Como devo vestir meu bebê para dormir hoje?', icon: '🌙', border: 'hover:border-indigo-200' },
-                { text: 'A temperatura de fora é a mesma do quarto?', icon: '🌡️', border: 'hover:border-[#BFC8B2]' }
-              ].map((card, idx) => (
+                "“Será que meu bebê está com frio ou calor?”",
+                "“Será que essa roupa é suficiente para dormir?”",
+                "“Será que estou colocando camadas demais?”"
+              ].map((question, idx) => (
                 <div 
                   key={idx} 
-                  className={`bg-warm-white p-6 rounded-2xl border border-[#F2EEE7] text-left flex items-start gap-4 transition-all duration-300 shadow-sm ${card.border} hover:translate-y-[-2px]`}
+                  className="bg-warm-white py-4 px-6 rounded-2xl border border-[#F2EEE7] text-center shadow-sm select-none hover:border-peach-baby-light transition-all"
                 >
-                  <span className="text-2xl mt-1 select-none shrink-0">{card.icon}</span>
-                  <div>
-                    <h4 className="font-display font-semibold text-brand-text text-sm sm:text-base leading-snug">
-                      "{card.text}"
-                    </h4>
-                  </div>
+                  <p className="font-display font-semibold text-brand-primary text-sm sm:text-base italic leading-relaxed">
+                    {question}
+                  </p>
                 </div>
               ))}
             </div>
 
-            {/* Emotional and reassuring transition quote */}
-            <div className="mt-10 p-5 rounded-2xl bg-peach-baby/20 border border-peach-baby/45 inline-block max-w-2xl text-center">
-              <p className="text-sm font-semibold text-brand-primary font-display flex items-center justify-center gap-2">
-                <Heart className="w-4 h-4 fill-affective text-affective inline shrink-0" />
-                "Agora você pode ter uma orientação rápida, científica e prática sempre que surgir essa dúvida."
-              </p>
-            </div>
+            <p className="text-brand-text text-sm sm:text-base font-semibold mt-8 max-w-xl mx-auto leading-relaxed">
+              O ClimaBaby ajuda você a tomar essa decisão em segundos, considerando o ambiente real e o momento do seu bebê.
+            </p>
 
           </div>
         </section>
@@ -197,11 +189,14 @@ export default function App() {
         <section id="funcionamento-section" className="py-16 sm:py-24 bg-soft-cream border-b border-[#F2EEE7]">
           <div className="max-w-6xl mx-auto px-5 mb-12">
             
-            <div className="text-center max-w-xl mx-auto">
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-primary font-display">Simplicidade Científica</span>
-              <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight mt-1.5 text-brand-text">
-                Como funciona o ClimaBaby
+            <div className="text-center max-w-xl mx-auto space-y-3">
+              <span className="text-xs font-bold uppercase tracking-wider text-brand-primary font-display bg-peach-baby/25 px-2.5 py-1 rounded-full">Como funciona</span>
+              <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight mt-1.5 text-brand-text leading-tight">
+                Em menos de 30 segundos você descobre a roupa ideal
               </h2>
+              <p className="text-brand-text-light text-sm mt-3 leading-relaxed">
+                É simples: você responde algumas perguntas e o ClimaBaby faz uma recomendação personalizada.
+              </p>
             </div>
           </div>
 
@@ -228,30 +223,35 @@ export default function App() {
         <section className="py-16 sm:py-24 bg-soft-cream border-b border-[#F2EEE7]/90 overflow-hidden">
           <div className="max-w-6xl mx-auto px-5 mb-12">
             
-            <div className="text-center max-w-xl mx-auto">
+            <div className="text-center max-w-2xl mx-auto">
               <span className="text-xs font-bold uppercase tracking-wider text-brand-primary font-display bg-peach-baby/25 px-2.5 py-1 rounded-full border border-peach-baby/40">
                 Resultado Completo
               </span>
-              <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 text-brand-text">
-                O resultado que o ClimaBaby entrega
+              <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 text-brand-text leading-tight">
+                Uma recomendação completa e fácil de entender
               </h2>
-              <p className="text-brand-text-light text-sm mt-2 max-w-md mx-auto">
-                Uma recomendação detalhada, fácil de entender e personalizada para o conforto térmico exato que seu bebê precisa.
+              <p className="text-brand-text-light text-sm mt-3 max-w-lg mx-auto leading-relaxed">
+                O ClimaBaby organiza tudo de forma simples para que você saiba exatamente como vestir seu bebê.
               </p>
             </div>
 
-            {/* Quick check details in list underneath works - Moved Here */}
-            <div className="mt-12 bg-soft-cream p-5 rounded-2xl border border-[#F2EEE7] max-w-3xl mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-              <span className="text-xs font-semibold text-brand-text flex items-center gap-1.5 font-display">
-                <Info className="w-4 h-4 text-brand-primary shrink-0" />
-                Guia Técnico Inteligente
-              </span>
-              <div className="flex flex-wrap gap-x-6 gap-y-2">
-                {['Combinação de roupas', 'Método das camadas', 'Tecidos recomendados', 'Orientações de sono seguro'].map((item) => (
-                  <span key={item} className="text-xs text-brand-text-light flex items-center gap-1.5 font-medium">
-                    <Check className="w-3.5 h-3.5 text-sage-green bg-sage-green/20 rounded-full p-0.5 shrink-0" />
-                    {item}
-                  </span>
+            {/* List underneath works */}
+            <div className="text-center mt-10 max-w-3xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
+                {[
+                  'Combinação de roupas indicada para o momento',
+                  'Método das camadas explicado de forma simples',
+                  'Tecidos confortáveis para cada temperatura',
+                  'Orientações de conforto e sono seguro'
+                ].map((item) => (
+                  <div key={item} className="bg-warm-white p-4 rounded-2xl border border-[#F2EEE7] flex items-center gap-2.5 shadow-sm">
+                    <div className="w-6 h-6 rounded-full bg-sage-green/20 flex items-center justify-center shrink-0">
+                      <Check className="w-3.5 h-3.5 text-sage-green" />
+                    </div>
+                    <span className="text-xs sm:text-sm text-brand-text font-medium leading-tight">
+                      {item}
+                    </span>
+                  </div>
                 ))}
               </div>
             </div>
@@ -305,14 +305,14 @@ export default function App() {
             </div>
 
             <div className="text-left space-y-4">
-              <span className="text-[10px] font-extrabold text-brand-primary uppercase tracking-wider font-display bg-peach-baby/25 px-2.5 py-1 rounded-full border border-peach-baby/40">
+              <span className="text-[10px] font-extrabold text-brand-primary uppercase tracking-wider font-display bg-peach-baby/25 px-2.5 py-1 rounded-full border border-peach-baby/40 inline-block">
                 Imagens das roupinhas para simplificar a identificação
               </span>
               <h3 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-brand-text leading-tight">
-                Veja a roupa ideal na prática
+                Você vê exatamente o que vestir
               </h3>
               <p className="text-brand-text-light text-[13px] leading-relaxed">
-                O ClimaBaby não apenas fala o que usar. Ele mostra exatamente quais peças vestir, com imagens claras e orientações simples para você acertar na combinação.
+                O ClimaBaby não apenas fala o que usar. Ele mostra as peças recomendadas com imagens claras para facilitar sua escolha.
               </p>
               <div className="space-y-3 pt-2">
                 {[
@@ -342,8 +342,8 @@ export default function App() {
           <div className="max-w-6xl mx-auto px-5">
             
             <div className="text-center max-w-2xl mx-auto mb-16">
-              <span className="text-xs font-bold uppercase tracking-wider text-brand-primary font-display font-semibold">Diferenciais</span>
-              <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight mt-1.5 text-brand-text">
+              <span className="text-xs font-bold uppercase tracking-wider text-brand-primary font-display font-semibold bg-peach-baby/25 px-2.5 py-1 rounded-full animate-fade-in">Diferenciais</span>
+              <h2 className="font-display text-3xl sm:text-4xl font-extrabold tracking-tight mt-3 text-brand-text">
                 O que torna o ClimaBaby diferente?
               </h2>
               <p className="text-brand-text-light text-sm mt-3 leading-relaxed">
@@ -355,45 +355,45 @@ export default function App() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
               {/* Diff 1 */}
-              <div className="bg-warm-white p-6 sm:p-8 rounded-3xl border border-[#F2EEE7] shadow-sm flex gap-4 hover:translate-y-[-2px] transition-all">
+              <div className="bg-warm-white p-6 rounded-3xl border border-[#F2EEE7] shadow-sm flex gap-4 hover:translate-y-[-2px] transition-all animate-fade-in">
                 <span className="text-3xl shrink-0">🌡️</span>
                 <div>
-                  <h3 className="font-display font-semibold text-brand-text text-base sm:text-lg">Considera o ambiente de verdade</h3>
-                  <p className="text-xs sm:text-[13px] text-brand-text-light mt-1.5 leading-relaxed">
-                    Não basta olhar a temperatura da cidade. O ClimaBaby leva em conta como está o ambiente onde o bebê está, considerando fatores como quarto fechado, ar-condicionado, vento ou correntes de ar para uma recomendação muito mais personalizada.
+                  <h3 className="font-display font-semibold text-brand-text text-sm sm:text-base">Analisa o ambiente real</h3>
+                  <p className="text-[12px] text-brand-text-light mt-1.5 leading-relaxed">
+                    Não considera apenas a temperatura da rua. Leva em conta o ambiente onde o bebê realmente está, como quarto fechado, vento ou ar-condicionado.
                   </p>
                 </div>
               </div>
 
               {/* Diff 2 */}
-              <div className="bg-warm-white p-6 sm:p-8 rounded-3xl border border-[#F2EEE7] shadow-sm flex gap-4 hover:translate-y-[-2px] transition-all">
+              <div className="bg-warm-white p-6 rounded-3xl border border-[#F2EEE7] shadow-sm flex gap-4 hover:translate-y-[-2px] transition-all animate-fade-in">
                 <span className="text-3xl shrink-0">😴</span>
                 <div>
-                  <h3 className="font-display font-semibold text-brand-text text-base sm:text-lg">Entende que dormir é diferente de estar acordado</h3>
-                  <p className="text-xs sm:text-[13px] text-brand-text-light mt-1.5 leading-relaxed">
-                    Durante o sono, o bebê fica mais parado e pode precisar de uma atenção diferente com as camadas. O ClimaBaby adapta a recomendação para cochilos e sono noturno, indicando combinações seguras de roupas e o uso adequado do saco de dormir quando necessário.
+                  <h3 className="font-display font-semibold text-brand-text text-sm sm:text-base">Entende o momento do bebê</h3>
+                  <p className="text-[12px] text-brand-text-light mt-1.5 leading-relaxed">
+                    Dormir, brincar ou ficar no colo são situações diferentes e exigem cuidados diferentes.
                   </p>
                 </div>
               </div>
 
               {/* Diff 3 */}
-              <div className="bg-warm-white p-6 sm:p-8 rounded-3xl border border-[#F2EEE7] shadow-sm flex gap-4 hover:translate-y-[-2px] transition-all">
+              <div className="bg-warm-white p-6 rounded-3xl border border-[#F2EEE7] shadow-sm flex gap-4 hover:translate-y-[-2px] transition-all animate-fade-in">
                 <span className="text-3xl shrink-0">🤱</span>
                 <div>
-                  <h3 className="font-display font-semibold text-brand-text text-base sm:text-lg">Considera a rotina do seu bebê</h3>
-                  <p className="text-xs sm:text-[13px] text-brand-text-light mt-1.5 leading-relaxed">
-                    No colo ou no sling, o calor corporal do adulto pode aquecer o bebê naturalmente. O aplicativo ajusta as recomendações de acordo com cada momento do dia, ajudando a evitar tanto o frio quanto o excesso de roupas.
+                  <h3 className="font-display font-semibold text-brand-text text-sm sm:text-base">Considera a rotina do bebê</h3>
+                  <p className="text-[12px] text-brand-text-light mt-1.5 leading-relaxed">
+                    O calor do colo ou do sling também influencia no conforto térmico do bebê.
                   </p>
                 </div>
               </div>
 
               {/* Diff 4 */}
-              <div className="bg-warm-white p-6 sm:p-8 rounded-3xl border border-[#F2EEE7] shadow-sm flex gap-4 hover:translate-y-[-2px] transition-all">
+              <div className="bg-warm-white p-6 rounded-3xl border border-[#F2EEE7] shadow-sm flex gap-4 hover:translate-y-[-2px] transition-all animate-fade-in">
                 <span className="text-3xl shrink-0">🧸</span>
                 <div>
-                  <h3 className="font-display font-semibold text-brand-text text-base sm:text-lg">Ensina a vestir por camadas de forma simples</h3>
-                  <p className="text-xs sm:text-[13px] text-brand-text-light mt-1.5 leading-relaxed">
-                    Nada de dúvidas entre body, calça, macacão ou saco de dormir. O ClimaBaby mostra exatamente quais peças combinar, quais tecidos são mais indicados e ainda traz orientações de conforto e segurança para o dia a dia.
+                  <h3 className="font-display font-semibold text-brand-text text-sm sm:text-base">Ensina a vestir por camadas</h3>
+                  <p className="text-[12px] text-brand-text-light mt-1.5 leading-relaxed">
+                    Mostra quais peças combinar de forma simples e prática.
                   </p>
                 </div>
               </div>
@@ -414,14 +414,11 @@ export default function App() {
           <div className="max-w-4xl mx-auto px-5 text-center">
             
             <div className="max-w-2xl mx-auto space-y-4">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-peach-baby/25 text-brand-text text-xs font-bold tracking-tight font-display border border-peach-baby/40">
-                💡 Tranquilidade Hipoalergênica
-              </span>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-brand-text">
-                Um cuidado que você vai usar todos os dias.
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-brand-text leading-tight animate-fade-in">
+                💛 Um cuidado que acompanha todos os dias
               </h2>
               <p className="text-brand-text-light text-base sm:text-lg leading-relaxed max-w-xl mx-auto">
-                Por menos que o valor de uma única roupinha comum de bebê, você terá uma ferramenta inteligente no celular para ajudar em todas as decisões de vestir do dia a dia.
+                Por menos que o valor de uma única roupinha de bebê, você terá uma ferramenta inteligente sempre disponível no celular para ajudar nas decisões do dia a dia.
               </p>
             </div>
 
@@ -432,28 +429,31 @@ export default function App() {
               <div className="p-8 sm:p-10 space-y-6">
                 
                 <div className="space-y-1">
-                  <span className="text-xs font-bold text-brand-text-light uppercase tracking-wider font-display">Acesso Premium Vitalício</span>
+                  <h3 className="text-sm sm:text-base font-extrabold text-brand-text uppercase tracking-wide font-display">
+                    Tenha o ClimaBaby para sempre
+                  </h3>
                   <div className="text-center py-2 flex items-baseline justify-center gap-2">
-                    <span className="text-sm font-semibold text-brand-text-light pb-2 font-display">R$</span>
+                    <span className="text-xs font-bold text-brand-text-light font-display">Apenas</span>
+                    <span className="text-sm font-semibold text-brand-text pb-2 font-display">R$</span>
                     <span className="text-5xl font-black text-brand-text tracking-tight font-display">29,90</span>
-                    <span className="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100 font-display">Uso Vitalício</span>
                   </div>
-                  <p className="text-[11px] text-brand-text-light font-medium">Sem assinaturas, sem taxas ocultas, sem mensalidades.</p>
+                  <p className="text-[11px] sm:text-xs text-brand-text-light font-medium">Um único pagamento. Sem mensalidades.</p>
                 </div>
 
                 <div className="border-t border-[#F2EEE7] pt-6 space-y-3.5 text-left">
                   {[
                     'Acesso imediato no celular',
-                    'Calculadora inteligente de combinação térmica',
-                    'Todas as regras de TOG e Sono Seguro integradas',
-                    'Atualizações futuras inclusas e gratuitas para sempre',
+                    'Calculadora inteligente de roupas',
+                    'Recomendações personalizadas para o dia e a noite',
+                    'Orientações de conforto e sono seguro',
+                    'Atualizações futuras gratuitas',
                     'Garantia de 7 dias ou seu dinheiro de volta'
                   ].map((feat) => (
                     <div key={feat} className="flex items-center gap-3">
                       <div className="w-5 h-5 rounded-full bg-peach-baby/25 flex items-center justify-center shrink-0">
                         <Check className="w-3 h-3 text-brand-primary" />
                       </div>
-                      <span className="text-xs sm:text-sm font-semibold text-brand-text">{feat}</span>
+                      <span className="text-xs sm:text-[13px] font-semibold text-brand-text">{feat}</span>
                     </div>
                   ))}
                 </div>
