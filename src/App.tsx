@@ -417,7 +417,7 @@ export default function App() {
               </p>
               <div className="space-y-3 pt-2">
                 {[
-                  'Body, calça, macacão e saco de dormir ilustrados',
+                  'Visualize as peças recomendadas',
                   'Método de camadas fácil de entender',
                   'Orientações de conforto e proteção para cada clima'
                 ].map((item, id) => (
@@ -825,7 +825,7 @@ export default function App() {
                     <div className="bg-soft-cream p-4 rounded-xl border border-[#F2EEE7] space-y-3">
                       <div>
                         <span className="text-[10px] uppercase font-bold text-brand-text-light tracking-wide font-display">E-mail de Contato</span>
-                        <p className="text-sm font-bold text-brand-text font-display">suporte@climababy.com.br</p>
+                        <p className="text-sm font-bold text-brand-text font-display">maecompleta.contato@gmail.com</p>
                       </div>
                       <div>
                         <span className="text-[10px] uppercase font-bold text-brand-text-light tracking-wide font-display">Horário de Atendimento</span>
