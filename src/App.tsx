@@ -716,26 +716,28 @@ export default function App() {
               ClimaBaby 💛
             </span>
             <p className="text-xs text-brand-text-light max-w-sm">
-              Criado para trazer mais tranquilidade, conforto e segurança nos cuidados diários com a proteção térmica do seu bebê.
+              Mais tranquilidade para as pequenas decisões do dia a dia.
             </p>
           </div>
 
           {/* Safe micro regulatory warnings & links */}
           <div className="flex flex-wrap justify-center gap-6 text-xs font-semibold text-brand-text-light">
             <button onClick={() => setActiveModal('support')} className="hover:text-brand-text transition-colors cursor-pointer flex items-center gap-1">
-              <Mail className="w-3.5 h-3.5" /> Suporte
+              📧 Suporte
             </button>
             <button onClick={() => setActiveModal('privacy')} className="hover:text-brand-text transition-colors cursor-pointer flex items-center gap-1">
-              <FileText className="w-3.5 h-3.5" /> Política de Privacidade
+              📄 Política de Privacidade
             </button>
             <button onClick={() => setActiveModal('terms')} className="hover:text-brand-text transition-colors cursor-pointer flex items-center gap-1">
-              <Info className="w-3.5 h-3.5" /> Termos de Uso
+              ℹ️ Termos de Uso
             </button>
           </div>
 
-          <div className="pt-4 border-t border-[#F1EBE2] text-[10px] text-brand-text-light space-y-1">
-            <p>© 2026 ClimaBaby. Todos os direitos reservados. CNPJ: 45.182.234/0001-90</p>
-            <p className="opacity-90">O ClimaBaby é uma ferramenta de suporte e orientação e não substitui diagnósticos médicos veterinários ou pediátricos diretos.</p>
+          <div className="pt-4 border-t border-[#F1EBE2] text-[10px] text-brand-text-light space-y-2">
+            <p>© 2026 ClimaBaby. Todos os direitos reservados.</p>
+            <p className="opacity-90 max-w-2xl mx-auto">
+              Ferramenta de orientação para ajudar famílias a escolherem combinações de roupas mais adequadas para o conforto térmico do bebê.
+            </p>
           </div>
 
         </div>
