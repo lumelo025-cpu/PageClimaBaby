@@ -144,9 +144,11 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-0 sm:px-5">
             <div className="relative w-full overflow-hidden sm:rounded-[32px] border-b sm:border border-[#F2EEE7] bg-warm-white shadow-sm sm:shadow-premium select-none">
               <img 
+                id="hero-banner-image"
                 src="https://site.maecompleta.com/wp-content/uploads/2026/06/ChatGPT-Image-16-de-jun.-de-2026-21_44_13.png" 
                 alt="ClimaBaby App Banner de Boas-vindas" 
-                className="w-full h-auto object-cover max-h-[640px] sm:max-h-none select-none transition-transform duration-300 hover:scale-[1.005]"
+                className="w-full h-auto object-cover max-h-[640px] sm:max-h-none select-none transition-transform duration-300 hover:scale-[1.005] cursor-pointer"
+                onClick={() => document.getElementById('offer-section')?.scrollIntoView({ behavior: 'smooth' })}
                 referrerPolicy="no-referrer"
                 loading="eager"
                 decoding="sync"
@@ -558,27 +560,32 @@ export default function App() {
                 
                 <div className="p-8 sm:p-10 space-y-6">
                   
-                  <div className="space-y-2 pt-2">
+                  <div className="space-y-3 pt-2">
                     <h3 className="text-xs sm:text-sm font-extrabold text-[#7E756E] uppercase tracking-widest font-display">
-                      Acesso Vitalício Imediato
+                      Acesso Completo Imediato
                     </h3>
                     <div className="relative inline-block max-w-full">
                       {/* Floating mini badge for price discount */}
-                      <span className="absolute -top-3 -right-6 rotate-12 bg-emerald-600 text-[9px] font-extrabold text-white px-2 py-0.5 rounded-full shadow-sm">
-                        ÚNICO
+                      <span className="absolute -top-3 -right-12 rotate-12 bg-emerald-600 text-[9px] font-extrabold text-white px-2.5 py-0.5 rounded-full shadow-sm">
+                        PAGAMENTO ÚNICO
                       </span>
-                      <div className="text-center py-2 flex items-baseline justify-center gap-2">
-                        <span className="text-xs font-bold text-brand-text-light font-display">Por</span>
-                        <span className="text-sm font-semibold text-[#2F2722] pb-1 font-display">R$</span>
-                        <span className="text-5xl sm:text-6xl font-black text-[#2F2722] tracking-tight font-display">29,90</span>
+                      <div className="text-center py-1 flex flex-col items-center justify-center">
+                        <div className="flex items-baseline justify-center gap-2">
+                          <span className="text-xs font-bold text-brand-text-light font-display">Apenas</span>
+                          <span className="text-sm font-semibold text-[#2F2722] pb-1 font-display">R$</span>
+                          <span className="text-5xl sm:text-6xl font-black text-[#2F2722] tracking-tight font-display">29,90</span>
+                        </div>
+                        <div className="text-xs sm:text-sm font-extrabold text-[#FF6036] tracking-wide font-display mt-1">
+                          ou até 6x de R$ 5,61
+                        </div>
                       </div>
                     </div>
-                    <p className="text-[11px] sm:text-xs text-brand-text-light font-medium">Sem mensalidades ou surpresas futuras.</p>
+                    <p className="text-[11px] sm:text-xs text-brand-text-light font-medium">Pagamento único. Sem mensalidades ou surpresas futuras.</p>
                   </div>
 
                   <div className="border-t border-[#F2EEE7] pt-6 space-y-4 text-left">
                     {[
-                      'Acesso instantâneo e vitalício no celular',
+                      'Acesso instantâneo no celular',
                       'Calculadora inteligente baseada em ciência térmica',
                       'Recomendações customizadas para noite e dia',
                       'Orientações extras sobre tecidos e calçados',
@@ -654,7 +661,7 @@ export default function App() {
                 },
                 {
                   q: 'Como vou receber o acesso após o pagamento?',
-                  a: 'Imediatamente! Assim que o pagamento (Pix ou Cartão) for confirmado pelo checkout seguro da Kiwify, nosso sistema envia automaticamente o seu link exclusivo de acesso vitalício para o e-mail cadastrado.'
+                  a: 'Imediatamente! Assim que o pagamento (Pix ou Cartão) for confirmado pelo checkout seguro da Kiwify, nosso sistema envia automaticamente o seu link exclusivo de acesso completo para o e-mail cadastrado.'
                 },
                 {
                   q: 'Serve para bebês de qualquer idade?',
@@ -765,7 +772,7 @@ export default function App() {
                 {activeNotification.name} ({activeNotification.city})
               </p>
               <p className="text-[10px] text-brand-text-light">
-                Acabou de adquirir o acesso vitalício
+                Adquiriu o ClimaBaby agora
               </p>
               <span className="text-[8px] text-brand-text-light font-semibold uppercase tracking-wider block mt-0.5">
                 Há {activeNotification.time}
@@ -856,7 +863,7 @@ export default function App() {
                     </p>
                     <h5 className="font-bold text-brand-text mt-2 font-display">1. Coleta de Informações</h5>
                     <p>
-                      Coletamos seu e-mail e nome inseridos na compra no gateway da Kiwify unicamente para podermos validar sua licença vitalícia e liberar seu acesso de segurança pessoal.
+                      Coletamos seu e-mail e nome inseridos na compra no gateway da Kiwify unicamente para podermos validar sua compra e liberar seu acesso de segurança pessoal.
                     </p>
                     <h5 className="font-bold text-brand-text mt-2 font-display">2. Detecção de Temperatura e GPS</h5>
                     <p>
@@ -886,7 +893,7 @@ export default function App() {
                     </p>
                     <h5 className="font-bold text-brand-text mt-2 font-display">1. Licença de Uso</h5>
                     <p>
-                      A aquisição do ClimaBaby concede uma licença exclusiva, pessoal, individual e intransferível de uso do aplicativo de forma vitalícia, sem taxas recorrentes futuras.
+                      A aquisição do ClimaBaby concede uma licença exclusiva, pessoal, individual e intransferível de uso do aplicativo, sem taxas recorrentes futuras.
                     </p>
                     <h5 className="font-bold text-brand-text mt-2 font-display">2. Limites do Diagnóstico Médico</h5>
                     <p>
