@@ -53,7 +53,7 @@ export default function App() {
         (window as any).fbq('track', 'InitiateCheckout', {
           value: 29.90,
           currency: 'BRL',
-          content_name: 'ClimaBaby ACESSO VITALÍCIO',
+          content_name: 'ClimaBaby ACESSO COMPLETO',
           content_category: 'Maternidade',
           content_ids: ['climababych01'],
           content_type: 'product'
