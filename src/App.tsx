@@ -37,6 +37,140 @@ export default function App() {
   // FAQ states
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
 
+  // Exit Intent states
+  const [isExitIntentOpen, setIsExitIntentOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile device
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    setIsMobile(window.innerWidth < 640);
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Exit intent hook
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    // Check if we should disable triggering (already shown or clicked buy)
+    const shouldDisable = () => {
+      try {
+        return (
+          localStorage.getItem('climababy_exit_intent_shown') === 'true' ||
+          localStorage.getItem('climababy_purchased_clicked') === 'true'
+        );
+      } catch (e) {
+        return false;
+      }
+    };
+
+    if (shouldDisable()) return;
+
+    const triggerExitIntent = () => {
+      if (shouldDisable()) return;
+      try {
+        localStorage.setItem('climababy_exit_intent_shown', 'true');
+      } catch (e) {}
+      setIsExitIntentOpen(true);
+      cleanup();
+    };
+
+    // 1. DESKTOP trigger: mouse leaving the top viewport
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY < 20) {
+        triggerExitIntent();
+      }
+    };
+
+    // 2. MOBILE trigger A: rapid scroll up after scrolling down at least 300px
+    let lastScrollY = window.scrollY;
+    let lastScrollTime = Date.now();
+    let maxScrollY = 0;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const currentTime = Date.now();
+      
+      if (currentScrollY > maxScrollY) {
+        maxScrollY = currentScrollY;
+      }
+
+      const diffY = lastScrollY - currentScrollY; // positive means scrolling up
+      const diffTime = currentTime - lastScrollTime;
+
+      if (maxScrollY > 300 && diffY > 80 && diffTime < 250 && diffTime > 10) {
+        // Rapid scroll up detected!
+        triggerExitIntent();
+      }
+
+      lastScrollY = currentScrollY;
+      lastScrollTime = currentTime;
+    };
+
+    // 3. MOBILE/DESKTOP trigger B: inactivity for 12 seconds after some activity / scrolling down
+    let inactivityTimer: NodeJS.Timeout;
+    const resetInactivityTimer = () => {
+      clearTimeout(inactivityTimer);
+      
+      if (window.scrollY > 150) {
+        inactivityTimer = setTimeout(() => {
+          triggerExitIntent();
+        }, 12000); // 12 seconds of inactivity
+      }
+    };
+
+    const activityHandler = () => {
+      resetInactivityTimer();
+    };
+
+    document.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('scroll', handleScroll);
+    
+    window.addEventListener('scroll', activityHandler);
+    window.addEventListener('mousemove', activityHandler);
+    window.addEventListener('touchstart', activityHandler);
+
+    const cleanup = () => {
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', activityHandler);
+      window.removeEventListener('mousemove', activityHandler);
+      window.removeEventListener('touchstart', activityHandler);
+      clearTimeout(inactivityTimer);
+    };
+
+    resetInactivityTimer();
+
+    return cleanup;
+  }, []);
+
+  // Kiwify Checkout Redirect for Discounted Offer
+  const handleExitIntentCheckout = () => {
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      try {
+        (window as any).fbq('track', 'InitiateCheckout', {
+          value: 19.90,
+          currency: 'BRL',
+          content_name: 'ClimaBaby ACESSO COMPLETO DESCONTO',
+          content_category: 'Maternidade',
+          content_ids: ['climababych01_discount'],
+          content_type: 'product'
+        });
+      } catch (e) {
+        console.error('Error tracking pixel event:', e);
+      }
+    }
+
+    try {
+      localStorage.setItem('climababy_purchased_clicked', 'true');
+    } catch (e) {}
+
+    setIsExitIntentOpen(false);
+    window.open('https://pay.kiwify.com.br/6rQxenX', '_blank');
+  };
+
   // Scroll to section helper
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -62,6 +196,12 @@ export default function App() {
         console.error('Error tracking pixel event:', e);
       }
     }
+    
+    // Remember purchase button was clicked to avoid showing exit intent
+    try {
+      localStorage.setItem('climababy_purchased_clicked', 'true');
+    } catch (e) {}
+
     // Standard secure redirect to Kiwify checkout placeholder or real link
     window.open('https://pay.kiwify.com.br/n9buLYP', '_blank');
   };
@@ -917,6 +1057,107 @@ export default function App() {
                 </button>
               </div>
 
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* =========================================================================
+          EXIT INTENT POP-UP / BOTTOM SHEET
+          ========================================================================= */}
+      <AnimatePresence>
+        {isExitIntentOpen && (
+          <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
+            {/* Backdrop filter blur backdrop overlay */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsExitIntentOpen(false)}
+              className="absolute inset-0 bg-brand-text/50 backdrop-blur-sm"
+            />
+            
+            {/* Sheet / Modal container */}
+            <motion.div 
+              // Slide up on mobile (<640px), fade and scale up on desktop
+              initial={isMobile ? { y: '100%' } : { opacity: 0, scale: 0.95, y: 15 }}
+              animate={isMobile ? { y: 0 } : { opacity: 1, scale: 1, y: 0 }}
+              exit={isMobile ? { y: '100%' } : { opacity: 0, scale: 0.95, y: 15 }}
+              transition={{ type: 'spring', damping: 28, stiffness: 220 }}
+              className="bg-[#FFFDF9] w-full sm:max-w-md rounded-t-[32px] sm:rounded-[32px] border-t sm:border border-[#F8F4EE] shadow-premium-lg overflow-hidden relative z-10 p-6 sm:p-8 max-h-[72vh] sm:max-h-[90vh] overflow-y-auto flex flex-col text-center"
+            >
+              {/* Handle bar for bottom sheet (visible on mobile only) */}
+              <div className="w-12 h-1.5 bg-[#F8F4EE] rounded-full mx-auto mb-4 sm:hidden" />
+
+              {/* Discrete Close Button */}
+              <button 
+                onClick={() => setIsExitIntentOpen(false)}
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-[#F8F4EE] text-[#7E756E] hover:text-[#5E5650] transition-colors cursor-pointer"
+                aria-label="Fechar"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="flex-1 flex flex-col justify-center py-2 text-center">
+                {/* Visual indicator (soft heart/star/badge) */}
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#F8F4EE] text-2xl mx-auto mb-4 select-none animate-bounce">
+                  💛
+                </div>
+
+                {/* Título */}
+                <h3 className="text-2xl sm:text-3xl font-black text-[#5E5650] font-display tracking-tight mb-2">
+                  Espere! 💛
+                </h3>
+
+                {/* Headline */}
+                <h4 className="text-base sm:text-lg font-extrabold text-[#D89A85] font-display tracking-tight leading-snug mb-3">
+                  Leve o ClimaBaby com R$10 de desconto
+                </h4>
+
+                {/* Texto */}
+                <p className="text-xs sm:text-sm text-[#7E756E] leading-relaxed mb-5 max-w-sm mx-auto font-medium">
+                  Essa condição especial é válida somente agora, enquanto você está nesta página.
+                </p>
+
+                {/* Preço Section */}
+                <div className="bg-[#F8F4EE] rounded-2xl py-3.5 px-4 mb-5 border border-[#FFFDF9] max-w-xs mx-auto w-full">
+                  <p className="text-xs text-[#7E756E] line-through font-semibold mb-0.5">De R$ 29,90</p>
+                  <div className="flex items-baseline justify-center gap-1">
+                    <span className="text-[10px] font-bold text-[#D89A85] uppercase tracking-wider mr-1">Por apenas</span>
+                    <span className="text-xs font-extrabold text-[#5E5650]">R$</span>
+                    <span className="text-3xl sm:text-4xl font-black text-[#5E5650] tracking-tight">19,90</span>
+                  </div>
+                  <p className="text-[9px] text-[#7E756E] font-bold uppercase tracking-wider mt-1.5">
+                    Pagamento Único
+                  </p>
+                </div>
+
+                {/* Subtexto */}
+                <p className="text-[10px] sm:text-xs text-[#7E756E] font-bold tracking-wide mb-6">
+                  Acesso imediato • Uso vitalício • Garantia de 7 dias
+                </p>
+
+                {/* Botão Principal */}
+                <button 
+                  onClick={handleExitIntentCheckout}
+                  className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-[#D89A85] via-[#E2A18D] to-[#BF816E] text-white text-sm sm:text-base font-black tracking-wide font-display shadow-[0_8px_20px_rgba(216,154,133,0.35)] hover:shadow-[0_12px_28px_rgba(216,154,133,0.5)] hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 cursor-pointer mb-2 uppercase"
+                >
+                  QUERO MEU DESCONTO DE R$10
+                </button>
+
+                {/* Small text below main button */}
+                <p className="text-[9px] sm:text-[10px] text-[#7E756E] font-medium leading-relaxed max-w-[280px] mx-auto mb-5">
+                  Oferta exclusiva desta página. Ao sair, o desconto pode não estar mais disponível.
+                </p>
+
+                {/* Botão Secundário */}
+                <button 
+                  onClick={() => setIsExitIntentOpen(false)}
+                  className="text-xs font-bold text-[#7E756E] hover:text-[#5E5650] underline underline-offset-4 transition-colors cursor-pointer"
+                >
+                  Continuar vendo a página
+                </button>
+              </div>
             </motion.div>
           </div>
         )}
